@@ -1,0 +1,426 @@
+{
+  "scanned_rows": 2934886,
+  "kept_rows": 40318,
+  "other_event_skipped": 0,
+  "diseases": [
+    "DIPHTHERIA",
+    "INFLUENZA",
+    "POLIOMYELITIS"
+  ],
+  "city_rules": {
+    "BALTIMORE": [
+      "MD",
+      null
+    ],
+    "CLEVELAND": [
+      "OH",
+      null
+    ],
+    "LOS ANGELES": [
+      "CA",
+      null
+    ],
+    "MILWAUKEE": [
+      "WI",
+      null
+    ],
+    "NEW YORK": [
+      "NY",
+      "CITY"
+    ],
+    "WASHINGTON": [
+      "DC",
+      null
+    ]
+  },
+  "groups": {
+    "BALTIMORE|DIPHTHERIA|CASES": {
+      "rows": 2159,
+      "n_missing_number": 0,
+      "n_dup": 3,
+      "min_epi_week": "190640",
+      "max_epi_week": "195333",
+      "min_year": 1906,
+      "max_year": 1953,
+      "missing_years": [
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 293
+    },
+    "BALTIMORE|DIPHTHERIA|DEATHS": {
+      "rows": 939,
+      "n_missing_number": 0,
+      "n_dup": 2,
+      "min_epi_week": "190001",
+      "max_epi_week": "192352",
+      "min_year": 1900,
+      "max_year": 1923,
+      "missing_years": [],
+      "n_missing_weeks": 316
+    },
+    "BALTIMORE|INFLUENZA|CASES": {
+      "rows": 1233,
+      "n_missing_number": 0,
+      "n_dup": 5,
+      "min_epi_week": "192001",
+      "max_epi_week": "194826",
+      "min_year": 1920,
+      "max_year": 1948,
+      "missing_years": [],
+      "n_missing_weeks": 260
+    },
+    "BALTIMORE|INFLUENZA|DEATHS": {
+      "rows": 1389,
+      "n_missing_number": 0,
+      "n_dup": 3,
+      "min_epi_week": "192002",
+      "max_epi_week": "194825",
+      "min_year": 1920,
+      "max_year": 1948,
+      "missing_years": [],
+      "n_missing_weeks": 100
+    },
+    "BALTIMORE|POLIOMYELITIS|CASES": {
+      "rows": 1209,
+      "n_missing_number": 0,
+      "n_dup": 3,
+      "min_epi_week": "191229",
+      "max_epi_week": "195350",
+      "min_year": 1912,
+      "max_year": 1953,
+      "missing_years": [
+        1913,
+        1914,
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 957
+    },
+    "CLEVELAND|DIPHTHERIA|CASES": {
+      "rows": 2139,
+      "n_missing_number": 0,
+      "n_dup": 6,
+      "min_epi_week": "190640",
+      "max_epi_week": "195347",
+      "min_year": 1906,
+      "max_year": 1953,
+      "missing_years": [
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 2267
+    },
+    "CLEVELAND|DIPHTHERIA|DEATHS": {
+      "rows": 1027,
+      "n_missing_number": 0,
+      "n_dup": 5,
+      "min_epi_week": "190001",
+      "max_epi_week": "192352",
+      "min_year": 1900,
+      "max_year": 1923,
+      "missing_years": [],
+      "n_missing_weeks": 501
+    },
+    "CLEVELAND|INFLUENZA|CASES": {
+      "rows": 1259,
+      "n_missing_number": 0,
+      "n_dup": 6,
+      "min_epi_week": "192001",
+      "max_epi_week": "194822",
+      "min_year": 1920,
+      "max_year": 1948,
+      "missing_years": [],
+      "n_missing_weeks": 230
+    },
+    "CLEVELAND|INFLUENZA|DEATHS": {
+      "rows": 1341,
+      "n_missing_number": 0,
+      "n_dup": 3,
+      "min_epi_week": "192001",
+      "max_epi_week": "194825",
+      "min_year": 1920,
+      "max_year": 1948,
+      "missing_years": [],
+      "n_missing_weeks": 148
+    },
+    "CLEVELAND|POLIOMYELITIS|CASES": {
+      "rows": 1194,
+      "n_missing_number": 0,
+      "n_dup": 2,
+      "min_epi_week": "191224",
+      "max_epi_week": "195349",
+      "min_year": 1912,
+      "max_year": 1953,
+      "missing_years": [
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 975
+    },
+    "LOS ANGELES|DIPHTHERIA|CASES": {
+      "rows": 2117,
+      "n_missing_number": 0,
+      "n_dup": 6,
+      "min_epi_week": "190617",
+      "max_epi_week": "195344",
+      "min_year": 1906,
+      "max_year": 1953,
+      "missing_years": [
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 2478
+    },
+    "LOS ANGELES|DIPHTHERIA|DEATHS": {
+      "rows": 626,
+      "n_missing_number": 0,
+      "n_dup": 2,
+      "min_epi_week": "190001",
+      "max_epi_week": "192352",
+      "min_year": 1900,
+      "max_year": 1923,
+      "missing_years": [],
+      "n_missing_weeks": 639
+    },
+    "LOS ANGELES|INFLUENZA|CASES": {
+      "rows": 1388,
+      "n_missing_number": 0,
+      "n_dup": 4,
+      "min_epi_week": "192001",
+      "max_epi_week": "194826",
+      "min_year": 1920,
+      "max_year": 1948,
+      "missing_years": [],
+      "n_missing_weeks": 104
+    },
+    "LOS ANGELES|INFLUENZA|DEATHS": {
+      "rows": 1327,
+      "n_missing_number": 0,
+      "n_dup": 2,
+      "min_epi_week": "192001",
+      "max_epi_week": "194826",
+      "min_year": 1920,
+      "max_year": 1948,
+      "missing_years": [],
+      "n_missing_weeks": 163
+    },
+    "LOS ANGELES|POLIOMYELITIS|CASES": {
+      "rows": 1347,
+      "n_missing_number": 0,
+      "n_dup": 3,
+      "min_epi_week": "191224",
+      "max_epi_week": "195350",
+      "min_year": 1912,
+      "max_year": 1953,
+      "missing_years": [
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 824
+    },
+    "MILWAUKEE|DIPHTHERIA|CASES": {
+      "rows": 2144,
+      "n_missing_number": 0,
+      "n_dup": 6,
+      "min_epi_week": "190639",
+      "max_epi_week": "195308",
+      "min_year": 1906,
+      "max_year": 1953,
+      "missing_years": [
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 293
+    },
+    "MILWAUKEE|DIPHTHERIA|DEATHS": {
+      "rows": 833,
+      "n_missing_number": 0,
+      "n_dup": 3,
+      "min_epi_week": "190001",
+      "max_epi_week": "192351",
+      "min_year": 1900,
+      "max_year": 1923,
+      "missing_years": [
+        1921
+      ],
+      "n_missing_weeks": 430
+    },
+    "MILWAUKEE|INFLUENZA|CASES": {
+      "rows": 698,
+      "n_missing_number": 0,
+      "n_dup": 2,
+      "min_epi_week": "192001",
+      "max_epi_week": "194753",
+      "min_year": 1920,
+      "max_year": 1947,
+      "missing_years": [],
+      "n_missing_weeks": 766
+    },
+    "MILWAUKEE|INFLUENZA|DEATHS": {
+      "rows": 1279,
+      "n_missing_number": 0,
+      "n_dup": 3,
+      "min_epi_week": "192001",
+      "max_epi_week": "194826",
+      "min_year": 1920,
+      "max_year": 1948,
+      "missing_years": [
+        1921,
+        1922
+      ],
+      "n_missing_weeks": 211
+    },
+    "MILWAUKEE|POLIOMYELITIS|CASES": {
+      "rows": 928,
+      "n_missing_number": 0,
+      "n_dup": 2,
+      "min_epi_week": "191639",
+      "max_epi_week": "195350",
+      "min_year": 1916,
+      "max_year": 1953,
+      "missing_years": [
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 1018
+    },
+    "NEW YORK|DIPHTHERIA|CASES": {
+      "rows": 2140,
+      "n_missing_number": 0,
+      "n_dup": 4,
+      "min_epi_week": "190640",
+      "max_epi_week": "195349",
+      "min_year": 1906,
+      "max_year": 1953,
+      "missing_years": [
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 327
+    },
+    "NEW YORK|DIPHTHERIA|DEATHS": {
+      "rows": 1161,
+      "n_missing_number": 0,
+      "n_dup": 5,
+      "min_epi_week": "190002",
+      "max_epi_week": "192352",
+      "min_year": 1900,
+      "max_year": 1923,
+      "missing_years": [],
+      "n_missing_weeks": 96
+    },
+    "NEW YORK|INFLUENZA|CASES": {
+      "rows": 1419,
+      "n_missing_number": 0,
+      "n_dup": 8,
+      "min_epi_week": "191949",
+      "max_epi_week": "194826",
+      "min_year": 1919,
+      "max_year": 1948,
+      "missing_years": [],
+      "n_missing_weeks": 81
+    },
+    "NEW YORK|INFLUENZA|DEATHS": {
+      "rows": 1462,
+      "n_missing_number": 0,
+      "n_dup": 4,
+      "min_epi_week": "192001",
+      "max_epi_week": "194826",
+      "min_year": 1920,
+      "max_year": 1948,
+      "missing_years": [],
+      "n_missing_weeks": 29
+    },
+    "NEW YORK|POLIOMYELITIS|CASES": {
+      "rows": 1714,
+      "n_missing_number": 0,
+      "n_dup": 4,
+      "min_epi_week": "191212",
+      "max_epi_week": "195350",
+      "min_year": 1912,
+      "max_year": 1953,
+      "missing_years": [
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 471
+    },
+    "WASHINGTON|DIPHTHERIA|CASES": {
+      "rows": 2094,
+      "n_missing_number": 0,
+      "n_dup": 5,
+      "min_epi_week": "190639",
+      "max_epi_week": "195240",
+      "min_year": 1906,
+      "max_year": 1952,
+      "missing_years": [
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 314
+    },
+    "WASHINGTON|DIPHTHERIA|DEATHS": {
+      "rows": 551,
+      "n_missing_number": 0,
+      "n_dup": 2,
+      "min_epi_week": "190001",
+      "max_epi_week": "192352",
+      "min_year": 1900,
+      "max_year": 1923,
+      "missing_years": [],
+      "n_missing_weeks": 703
+    },
+    "WASHINGTON|INFLUENZA|CASES": {
+      "rows": 892,
+      "n_missing_number": 0,
+      "n_dup": 2,
+      "min_epi_week": "192001",
+      "max_epi_week": "194806",
+      "min_year": 1920,
+      "max_year": 1948,
+      "missing_years": [],
+      "n_missing_weeks": 578
+    },
+    "WASHINGTON|INFLUENZA|DEATHS": {
+      "rows": 1354,
+      "n_missing_number": 0,
+      "n_dup": 3,
+      "min_epi_week": "192002",
+      "max_epi_week": "194826",
+      "min_year": 1920,
+      "max_year": 1948,
+      "missing_years": [],
+      "n_missing_weeks": 136
+    },
+    "WASHINGTON|POLIOMYELITIS|CASES": {
+      "rows": 955,
+      "n_missing_number": 0,
+      "n_dup": 2,
+      "min_epi_week": "191237",
+      "max_epi_week": "195348",
+      "min_year": 1912,
+      "max_year": 1953,
+      "missing_years": [
+        1913,
+        1919,
+        1920,
+        1949,
+        1950,
+        1951
+      ],
+      "n_missing_weeks": 1201
+    }
+  }
+}

@@ -1,0 +1,31 @@
+﻿city,census_year,population,decadal_growth_pct
+Baltimore,1910,558485,
+Baltimore,1920,733826,31.4
+Baltimore,1930,804874,9.68
+Baltimore,1940,859100,6.74
+Baltimore,1950,949708,10.55
+Cleveland,1910,560663,
+Cleveland,1920,796841,42.12
+Cleveland,1930,900429,13.0
+Cleveland,1940,878336,-2.45
+Cleveland,1950,914808,4.15
+Los Angeles,1910,319198,
+Los Angeles,1920,576673,80.66
+Los Angeles,1930,1238048,114.69
+Los Angeles,1940,1504277,21.5
+Los Angeles,1950,1970358,30.98
+Milwaukee,1910,373857,
+Milwaukee,1920,457147,22.28
+Milwaukee,1930,578249,26.49
+Milwaukee,1940,587472,1.59
+Milwaukee,1950,637392,8.5
+New York City,1910,4766883,
+New York City,1920,5620048,17.9
+New York City,1930,6930446,23.32
+New York City,1940,7454995,7.57
+New York City,1950,7891957,5.86
+Washington,1910,331069,
+Washington,1920,437571,32.17
+Washington,1930,486869,11.27
+Washington,1940,663091,36.19
+Washington,1950,802178,20.98

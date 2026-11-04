@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-03",
+  "original_analysis_date": "2026-10-31",
+  "seed": 20261031,
+  "permutations": 999,
+  "block_weeks": 8,
+  "versions": {
+    "python": "3.13.6",
+    "numpy": "2.5.4",
+    "pandas": "3.0.2",
+    "scipy": "1.18.0",
+    "matplotlib": "3.11.2"
+  },
+  "inputs_sha256": {
+    "data/integrated/weekly_sixcities_1915_1922_1930_1932.csv": "e1a0d25e8870bb57716d30676d646e18a07db17752b2866db4cc1f66a3439e58"
+  },
+  "reference_inputs_sha256": {
+    "data/cleaned/newspaper/newspaper_coverage_matrix.csv": "ce369570d3c22bd9e2d5c3550d2f3706311c2cea1b37639b9a237830a7717836",
+    "data/cleaned/newspaper/newspaper_coverage_matrix_zip.csv": "9e962e2629dd576cea94e09963aa2b9c438f868dadcf5ca4c797dca74ab17f53",
+    "data/cleaned/newspaper/newspaper_hits_weekly.csv": "590ccddc2a039d59a5ed9c6c169dd657d4b64922b7a58cbf96dca20080504fde",
+    "data/cleaned/newspaper/newspaper_hits_weekly_zip.csv": "9938bdadd4190f83067e6fd007ee5848672309e1cbafc94d2591ca58ddedf4f1",
+    "data/cleaned/nhgis/nhgis_points_geo.csv": "49665f8727bbbccbf1ba1cdc62a1462c834022082fc39e36b860795e43dbae57",
+    "data/cleaned/nhgis/population_clean.csv": "eda4419f04a18f22363d84307a0627ac936743247f0e9f77c5f8939b9532f05a",
+    "data/cleaned/noaa/noaa_station_mapping_summary.csv": "5b1d5d59420c973b689b8ddaa8c37d88deba29a23e846a4f4ad3474e16d92d0d",
+    "data/cleaned/noaa/noaa_weekly_sixcities.csv": "450c21f8919e54685b44ab2d9a45b5ed187b6bd12e3a5a0260a63fc33f6345ea",
+    "data/cleaned/tycho/cleaned_tycho_weekly_sixcities.csv": "5c1e9f17418845218fbcb8d06aca5c049a19bef85cc29df0e365ab248a739b8d",
+    "data/cleaned/tycho/tycho_coverage_matrix.csv": "efd9059d30fb7e96474d665692c5033f218801680c1fcb3cc9b2f49b39c3bac5"
+  },
+  "verification": {
+    "passed": true,
+    "failures": [],
+    "checks": "dimensions; keys; Sunday labels; all-cell rebuild; NOAA intervals and source equality; flu exclusion; complete-calendar rolling and NA; r and q bounds",
+    "verified_on": "2026-11-03",
+    "scope": "Current master and Q3 numerical artifacts; cleaned-source checks use the original workspace reference inputs, which are not all present in this trimmed delivery.",
+    "reference_data_root": "data/cleaned",
+    "current_statistical_artifacts_match": true
+  },
+  "headlines": [
+    "流感：平均温度主分析 r=-0.260、ρ=-0.302（n=957）；月份/年份调整后 r=-0.164、q=0.0050。",
+    "脊髓灰质炎：平均温度主分析 r=+0.277、ρ=+0.316（n=725）；月份/年份调整后 r=+0.074、q=0.2760。",
+    "白喉：平均温度主分析 r=-0.371、ρ=-0.383（n=3154）；月份/年份调整后 r=-0.047、q=0.1200。"
+  ],
+  "recovery_note": "Restored by replaying the current master twice in a temporary workspace; existing user results and source cards were not overwritten."
+}

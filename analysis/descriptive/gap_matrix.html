@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>六城三病种数据覆盖缺口（1916–1953）</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:#14263b;background:#fff;padding:16px;}
+</style>
+</head>
+<body>
+<div style="width:100%;font-family:'PingFang SC','Microsoft YaHei',system-ui,sans-serif;color:#14263b;">
+<div style="font-size:15px;font-weight:700;margin-bottom:4px;">六城 × 三病种数据覆盖缺口（研究窗口 1916–1953，逐年份）</div>
+<div style="font-size:12px;color:#3d5468;margin-bottom:10px;">绿色 = 该年有数据；橙色 = 该年缺失（基于 cleaned_tycho_weekly_sixcities.csv 实际年份）。脊灰死亡事件数据源本身无，全部缺失。</div>
+<div style="display:flex;gap:16px;font-size:12px;margin-bottom:8px;">
+  <span><span style="display:inline-block;width:12px;height:12px;background:#2e7d5b;border-radius:2px;vertical-align:-1px;margin-right:4px;"></span>有数据</span>
+  <span><span style="display:inline-block;width:12px;height:12px;background:#c96a2b;border-radius:2px;vertical-align:-1px;margin-right:4px;"></span>缺失</span>
+</div>
+<div id="mx"></div>
+</div>
+<script>
+(function(){
+var ROWS=[{"c": "BALTIMORE", "d": "DIPHTHERIA", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]},{"c": "BALTIMORE", "d": "DIPHTHERIA", "e": "DEATHS", "cells": [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"c": "BALTIMORE", "d": "INFLUENZA", "e": "CASES", "cells": [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "BALTIMORE", "d": "INFLUENZA", "e": "DEATHS", "cells": [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "BALTIMORE", "d": "POLIOMYELITIS", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]},{"c": "CLEVELAND", "d": "DIPHTHERIA", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]},{"c": "CLEVELAND", "d": "DIPHTHERIA", "e": "DEATHS", "cells": [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"c": "CLEVELAND", "d": "INFLUENZA", "e": "CASES", "cells": [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "CLEVELAND", "d": "INFLUENZA", "e": "DEATHS", "cells": [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "CLEVELAND", "d": "POLIOMYELITIS", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]},{"c": "LOS ANGELES", "d": "DIPHTHERIA", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]},{"c": "LOS ANGELES", "d": "DIPHTHERIA", "e": "DEATHS", "cells": [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"c": "LOS ANGELES", "d": "INFLUENZA", "e": "CASES", "cells": [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "LOS ANGELES", "d": "INFLUENZA", "e": "DEATHS", "cells": [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "LOS ANGELES", "d": "POLIOMYELITIS", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]},{"c": "MILWAUKEE", "d": "DIPHTHERIA", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]},{"c": "MILWAUKEE", "d": "DIPHTHERIA", "e": "DEATHS", "cells": [1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"c": "MILWAUKEE", "d": "INFLUENZA", "e": "CASES", "cells": [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0]},{"c": "MILWAUKEE", "d": "INFLUENZA", "e": "DEATHS", "cells": [0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "MILWAUKEE", "d": "POLIOMYELITIS", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]},{"c": "NEW YORK", "d": "DIPHTHERIA", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]},{"c": "NEW YORK", "d": "DIPHTHERIA", "e": "DEATHS", "cells": [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"c": "NEW YORK", "d": "INFLUENZA", "e": "CASES", "cells": [0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "NEW YORK", "d": "INFLUENZA", "e": "DEATHS", "cells": [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "NEW YORK", "d": "POLIOMYELITIS", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]},{"c": "WASHINGTON", "d": "DIPHTHERIA", "e": "CASES", "cells": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0]},{"c": "WASHINGTON", "d": "DIPHTHERIA", "e": "DEATHS", "cells": [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"c": "WASHINGTON", "d": "INFLUENZA", "e": "CASES", "cells": [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "WASHINGTON", "d": "INFLUENZA", "e": "DEATHS", "cells": [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]},{"c": "WASHINGTON", "d": "POLIOMYELITIS", "e": "CASES", "cells": [1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1]}];
+var DIS={"DIPHTHERIA":"白喉","INFLUENZA":"流感","POLIOMYELITIS":"脊灰"};
+var EV={"CASES":"病例","DEATHS":"死亡"};
+var CITY={"BALTIMORE":"巴尔的摩","CLEVELAND":"克利夫兰","LOS ANGELES":"洛杉矶","MILWAUKEE":"密尔沃基","NEW YORK":"纽约","WASHINGTON":"华盛顿"};
+var Y0=1916, N=38, CW=15;
+var mx=document.getElementById("mx");
+var html='';
+html+='<div style="display:flex;min-width:820px;">';
+html+='<div style="width:128px;flex:0 0 128px;"></div>';
+for(var i=0;i<N;i++){
+  var y=Y0+i;
+  var show=(y===Y0||(y-Y0)%5===0);
+  html+='<div style="width:'+CW+'px;flex:0 0 '+CW+'px;font-size:9.5px;color:#3d5468;text-align:center;'+(i===0?'border-left:2px solid #14263b;':'')+'">'+(show?y:'')+'</div>';
+}
+html+='</div>';
+var order=["DIPHTHERIA","INFLUENZA","POLIOMYELITIS"];
+order.forEach(function(dis){
+  var rows=ROWS.filter(function(r){return r.d===dis;});
+  if(!rows.length)return;
+  html+='<div style="min-width:820px;background:#eef3f8;font-size:12px;font-weight:700;color:#1f5f8b;padding:3px 0 3px 8px;margin-top:4px;border-radius:3px;">'+DIS[dis]+'</div>';
+  rows.forEach(function(r){
+    html+='<div style="display:flex;min-width:820px;">';
+    html+='<div style="width:128px;flex:0 0 128px;font-size:12px;line-height:'+CW+'px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+CITY[r.c]+' · '+EV[r.e]+'</div>';
+    for(var i=0;i<N;i++){
+      var has=r.cells[i]===1;
+      html+='<div title="'+Y0+i+'年：'+(has?'有数据':'缺失')+'" style="width:'+CW+'px;height:'+CW+'px;flex:0 0 '+CW+'px;box-sizing:border-box;border-right:1px solid #f6f8fb;background:'+(has?'#2e7d5b':'#c96a2b')+';'+(i===0?'border-left:2px solid #14263b;':'')+'"></div>';
+    }
+    html+='</div>';
+  });
+});
+mx.innerHTML=html;
+})();
+</script>
+</body>
+</html>

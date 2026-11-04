@@ -1,0 +1,9 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>Q3 一页结果</title><style>
+    @page{size:A4;margin:12mm}*{box-sizing:border-box}body{font-family:'Microsoft YaHei',sans-serif;color:#252525;max-width:1000px;margin:24px auto;line-height:1.6;font-size:14px}h1{font-size:25px;color:#1A2B4A;margin-bottom:4px}.meta{color:#52647D;font-size:12px}img{width:100%;display:block;margin:12px 0}.box{border-left:4px solid #C8861A;background:#f5f4f1;padding:10px 15px;margin:10px 0}li{margin:4px 0}a{color:#1A2B4A}@media print{body{font-size:10.5px;max-width:none;margin:0}h1{font-size:21px}img{margin:8px 0}.box{padding:7px 10px}}
+    </style><h1>温度、降水和降雪异常与疫情强度有关吗？</h1><div class="meta">任务 3 · 2026-10-31 · 六城 1915–1922＋1930–1932（含 1933-01-01 边界周） · 来源：NOAA + Tycho</div>
+    <img src="q3_core.png" alt="分病种气候疫情关联图"><div class="box"><b>可报告的温度结果</b><ul><li>流感：平均温度主分析 r=-0.260、ρ=-0.302（n=957）；月份/年份调整后 r=-0.164、q=0.0050。</li><li>脊髓灰质炎：平均温度主分析 r=+0.277、ρ=+0.316（n=725）；月份/年份调整后 r=+0.074、q=0.2760。</li><li>白喉：平均温度主分析 r=-0.371、ρ=-0.383（n=3154）；月份/年份调整后 r=-0.047、q=0.1200。</li></ul></div>
+    <p><b>方法：</b>病例先做完整 4 周滚动均值；气象周值与病例在各城内 z-score，成对排除 NA。流感整段排除 1915–1919。Pearson 为主、Spearman 为对照。* 表示 8 周分块置换（999 次）经 15 项 BH 校正后 q&lt;0.05。</p>
+    <p><b>降水/降雪：</b>降水：三病种主分析及调整后均未见校正后显著关联。降雪：流感、白喉主分析为弱正相关，但控制月份/年份后证据减弱；脊灰的 Pearson 与 Spearman 量级不同，不作稳定结论。</p>
+    <p><b>解释边界：</b>主图 A 的周值关联仍含季节性；B 控制各城月份与年份。†表示r与ρ方向或量级不同。流感温度关联的量级对log1p敏感。结果仅为统计关联，不能据此推断因果。</p>
+    <p><b>质量与交接：</b>降水缺 1 周，降雪缺 338 城市周，均未补零；提供站数/天数筛选、人口与 log1p、前后一周、边界周对照。六城映射与站距已补齐；降水/雪为站内有效日均后跨站平均，单位有样本证据，原导出配置仍待补。</p>
+    <p class="meta"><a href="Q3_report.md">完整方法与结果</a> · <a href="correlations.csv">相关系数表</a> · <a href="补充材料/sensitivity_comparison.csv">敏感性表</a> · <a href="../noaa_source_card/NOAA_source_card.md">NOAA 气象源卡</a></p></html>

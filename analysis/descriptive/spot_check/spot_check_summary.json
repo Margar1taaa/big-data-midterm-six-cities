@@ -1,0 +1,8 @@
+{
+ "hit_samples": 27,
+ "hit_samples_missing_raw": 0,
+ "miss_samples": 20,
+ "miss_with_v2_new_hits": 0,
+ "v2_recall_extra_rate_est": 0.0,
+ "note": "v2_extra 为 v2 新增模式；context 供人工判定真命中/误报"
+}

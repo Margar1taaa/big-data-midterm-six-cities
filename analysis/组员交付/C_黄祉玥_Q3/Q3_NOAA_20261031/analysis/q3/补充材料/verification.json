@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "failures": [],
+  "checks": "dimensions; keys; Sunday labels; all-cell rebuild; NOAA intervals and source equality; flu exclusion; complete-calendar rolling and NA; r and q bounds",
+  "verified_on": "2026-11-03",
+  "scope": "Current master and Q3 numerical artifacts; cleaned-source checks use the original workspace reference inputs, which are not all present in this trimmed delivery.",
+  "reference_data_root": "data/cleaned",
+  "current_statistical_artifacts_match": true
+}

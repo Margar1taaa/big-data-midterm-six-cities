@@ -1,0 +1,260 @@
+{
+ "DIPHTHERIA": [
+  {
+   "city": "BALTIMORE",
+   "event": "CASES",
+   "min": 1906,
+   "max": 1953,
+   "gap": "区间内断档:1949–1951"
+  },
+  {
+   "city": "BALTIMORE",
+   "event": "DEATHS",
+   "min": 1900,
+   "max": 1923,
+   "gap": "窗口后缺:1924–1953"
+  },
+  {
+   "city": "CLEVELAND",
+   "event": "CASES",
+   "min": 1906,
+   "max": 1953,
+   "gap": "区间内断档:1949–1951"
+  },
+  {
+   "city": "CLEVELAND",
+   "event": "DEATHS",
+   "min": 1900,
+   "max": 1923,
+   "gap": "窗口后缺:1924–1953"
+  },
+  {
+   "city": "LOS ANGELES",
+   "event": "CASES",
+   "min": 1906,
+   "max": 1953,
+   "gap": "区间内断档:1949–1951"
+  },
+  {
+   "city": "LOS ANGELES",
+   "event": "DEATHS",
+   "min": 1900,
+   "max": 1923,
+   "gap": "窗口后缺:1924–1953"
+  },
+  {
+   "city": "MILWAUKEE",
+   "event": "CASES",
+   "min": 1906,
+   "max": 1953,
+   "gap": "区间内断档:1949–1951"
+  },
+  {
+   "city": "MILWAUKEE",
+   "event": "DEATHS",
+   "min": 1900,
+   "max": 1923,
+   "gap": "区间内断档:1921;窗口后缺:1924–1953"
+  },
+  {
+   "city": "NEW YORK",
+   "event": "CASES",
+   "min": 1906,
+   "max": 1953,
+   "gap": "区间内断档:1949–1951"
+  },
+  {
+   "city": "NEW YORK",
+   "event": "DEATHS",
+   "min": 1900,
+   "max": 1923,
+   "gap": "窗口后缺:1924–1953"
+  },
+  {
+   "city": "WASHINGTON",
+   "event": "CASES",
+   "min": 1906,
+   "max": 1952,
+   "gap": "区间内断档:1949–1951;窗口后缺:1953"
+  },
+  {
+   "city": "WASHINGTON",
+   "event": "DEATHS",
+   "min": 1900,
+   "max": 1923,
+   "gap": "窗口后缺:1924–1953"
+  }
+ ],
+ "INFLUENZA": [
+  {
+   "city": "BALTIMORE",
+   "event": "CASES",
+   "min": 1920,
+   "max": 1948,
+   "gap": "窗口前缺:1916–1919;窗口后缺:1949–1953"
+  },
+  {
+   "city": "BALTIMORE",
+   "event": "DEATHS",
+   "min": 1920,
+   "max": 1948,
+   "gap": "窗口前缺:1916–1919;窗口后缺:1949–1953"
+  },
+  {
+   "city": "CLEVELAND",
+   "event": "CASES",
+   "min": 1920,
+   "max": 1948,
+   "gap": "窗口前缺:1916–1919;窗口后缺:1949–1953"
+  },
+  {
+   "city": "CLEVELAND",
+   "event": "DEATHS",
+   "min": 1920,
+   "max": 1948,
+   "gap": "窗口前缺:1916–1919;窗口后缺:1949–1953"
+  },
+  {
+   "city": "LOS ANGELES",
+   "event": "CASES",
+   "min": 1920,
+   "max": 1948,
+   "gap": "窗口前缺:1916–1919;窗口后缺:1949–1953"
+  },
+  {
+   "city": "LOS ANGELES",
+   "event": "DEATHS",
+   "min": 1920,
+   "max": 1948,
+   "gap": "窗口前缺:1916–1919;窗口后缺:1949–1953"
+  },
+  {
+   "city": "MILWAUKEE",
+   "event": "CASES",
+   "min": 1920,
+   "max": 1947,
+   "gap": "窗口前缺:1916–1919;窗口后缺:1948–1953"
+  },
+  {
+   "city": "MILWAUKEE",
+   "event": "DEATHS",
+   "min": 1920,
+   "max": 1948,
+   "gap": "区间内断档:1921–1922;窗口前缺:1916–1919;窗口后缺:1949–1953"
+  },
+  {
+   "city": "NEW YORK",
+   "event": "CASES",
+   "min": 1919,
+   "max": 1948,
+   "gap": "窗口前缺:1916–1918;窗口后缺:1949–1953"
+  },
+  {
+   "city": "NEW YORK",
+   "event": "DEATHS",
+   "min": 1920,
+   "max": 1948,
+   "gap": "窗口前缺:1916–1919;窗口后缺:1949–1953"
+  },
+  {
+   "city": "WASHINGTON",
+   "event": "CASES",
+   "min": 1920,
+   "max": 1948,
+   "gap": "窗口前缺:1916–1919;窗口后缺:1949–1953"
+  },
+  {
+   "city": "WASHINGTON",
+   "event": "DEATHS",
+   "min": 1920,
+   "max": 1948,
+   "gap": "窗口前缺:1916–1919;窗口后缺:1949–1953"
+  }
+ ],
+ "POLIOMYELITIS": [
+  {
+   "city": "BALTIMORE",
+   "event": "CASES",
+   "min": 1912,
+   "max": 1953,
+   "gap": "区间内断档:1913–1914,1949–1951"
+  },
+  {
+   "city": "BALTIMORE",
+   "event": "DEATHS",
+   "min": "",
+   "max": "",
+   "gap": "全部缺失"
+  },
+  {
+   "city": "CLEVELAND",
+   "event": "CASES",
+   "min": 1912,
+   "max": 1953,
+   "gap": "区间内断档:1949–1951"
+  },
+  {
+   "city": "CLEVELAND",
+   "event": "DEATHS",
+   "min": "",
+   "max": "",
+   "gap": "全部缺失"
+  },
+  {
+   "city": "LOS ANGELES",
+   "event": "CASES",
+   "min": 1912,
+   "max": 1953,
+   "gap": "区间内断档:1949–1951"
+  },
+  {
+   "city": "LOS ANGELES",
+   "event": "DEATHS",
+   "min": "",
+   "max": "",
+   "gap": "全部缺失"
+  },
+  {
+   "city": "MILWAUKEE",
+   "event": "CASES",
+   "min": 1916,
+   "max": 1953,
+   "gap": "区间内断档:1949–1951"
+  },
+  {
+   "city": "MILWAUKEE",
+   "event": "DEATHS",
+   "min": "",
+   "max": "",
+   "gap": "全部缺失"
+  },
+  {
+   "city": "NEW YORK",
+   "event": "CASES",
+   "min": 1912,
+   "max": 1953,
+   "gap": "区间内断档:1949–1951"
+  },
+  {
+   "city": "NEW YORK",
+   "event": "DEATHS",
+   "min": "",
+   "max": "",
+   "gap": "全部缺失"
+  },
+  {
+   "city": "WASHINGTON",
+   "event": "CASES",
+   "min": 1912,
+   "max": 1953,
+   "gap": "区间内断档:1913,1919–1920,1949–1951"
+  },
+  {
+   "city": "WASHINGTON",
+   "event": "DEATHS",
+   "min": "",
+   "max": "",
+   "gap": "全部缺失"
+  }
+ ]
+}

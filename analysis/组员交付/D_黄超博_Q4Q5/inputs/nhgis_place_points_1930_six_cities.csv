@@ -1,0 +1,7 @@
+﻿city_id,city_name,state_name,place_1930,nhgisplace,year,x_m,y_m,crs_name,match_status
+US_NY_NEW_YORK,New York City,New York,New York city,G360510000,1930,1826268.4382,572486.4370,USA_Contiguous_Albers_Equal_Area_Conic; NAD83; meters,exact_state_and_place_name
+US_DC_WASHINGTON,Washington,District of Columbia,Washington city,G110500000,1930,1618668.8557,318406.3293,USA_Contiguous_Albers_Equal_Area_Conic; NAD83; meters,exact_state_and_place_name
+US_WI_MILWAUKEE,Milwaukee,Wisconsin,Milwaukee city,G550530000,1930,655140.6668,648176.3220,USA_Contiguous_Albers_Equal_Area_Conic; NAD83; meters,exact_state_and_place_name
+US_CA_LOS_ANGELES,Los Angeles,California,Los Angeles city,G060440000,1930,-2019682.8348,-148521.1782,USA_Contiguous_Albers_Equal_Area_Conic; NAD83; meters,exact_state_and_place_name
+US_OH_CLEVELAND,Cleveland,Ohio,Cleveland city,G390160000,1930,1180744.2694,537155.0169,USA_Contiguous_Albers_Equal_Area_Conic; NAD83; meters,exact_state_and_place_name
+US_MD_BALTIMORE,Baltimore,Maryland,Baltimore city,G240040000,1930,1645401.3846,369094.4463,USA_Contiguous_Albers_Equal_Area_Conic; NAD83; meters,exact_state_and_place_name

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分析阶段任务分工</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='3' width='18' height='18' rx='4' fill='%231A2B4A'/%3E%3Ctext x='12' y='17' font-size='12' fill='%23fff' text-anchor='middle' font-family='sans-serif'%3E6%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --navy:#1A2B4A; --navy2:#52647D; --navy3:#8D9AAB; --navy4:#C9D0D9;
+    --amber:#C8861A; --red:#B84C3A; --green:#3E6B4F;
+    --ink:#252525; --sub:#767676; --grid:#D8D8D8; --bg:#F4F4F4; --card:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:-apple-system,"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif; color:var(--ink); background:var(--bg); line-height:1.55;}
+  .wrap{max-width:1080px; margin:0 auto; padding:16px 14px 48px;}
+  /* ===== header ===== */
+  .hero{background:var(--navy); color:#fff; border-radius:12px; padding:20px 18px; margin-bottom:16px;}
+  .hero .kicker{font-size:12px; letter-spacing:2px; color:var(--navy4);}
+  .hero h1{font-size:22px; margin:4px 0 6px; font-weight:700;}
+  .hero .meta{font-size:13px; color:var(--navy4); display:flex; flex-wrap:wrap; gap:4px 14px;}
+  .hero .meta b{color:#fff; font-weight:600;}
+  .badge-done{display:inline-block; font-size:11px; font-weight:700; color:#fff; background:var(--green); border-radius:6px; padding:1px 8px; margin-left:4px;}
+  /* ===== section head ===== */
+  .sec{background:var(--card); border:1px solid var(--grid); border-radius:12px; padding:16px 14px; margin-bottom:14px;}
+  .sec-head{display:flex; align-items:baseline; gap:10px; margin-bottom:12px; flex-wrap:wrap;}
+  .sec-head .step{background:var(--navy); color:#fff; font-size:12px; font-weight:700; border-radius:6px; padding:2px 8px; white-space:nowrap;}
+  .sec-head h2{font-size:17px; font-weight:700; color:var(--navy);}
+  .sec-head .note{font-size:12px; color:var(--sub);}
+  /* ===== 口径卡片 ===== */
+  .calib-grid{display:grid; grid-template-columns:1fr; gap:10px;}
+  .calib{border:1px solid var(--grid); border-radius:10px; padding:10px 12px; background:#fff;}
+  .calib.done{border-left:4px solid var(--green);}
+  .calib .no{font-size:11px; font-weight:700; color:var(--amber); letter-spacing:1px;}
+  .calib.done .no{color:var(--green);}
+  .calib .state{font-size:10.5px; font-weight:700; color:var(--green); background:#EAF2EC; border-radius:5px; padding:0 6px; margin-left:6px;}
+  .calib h3{font-size:14px; font-weight:700; margin:2px 0 4px;}
+  .calib p{font-size:12px; color:var(--sub);}
+  .calib p b{color:var(--ink);}
+  /* ===== 泳道 ===== */
+  .lane-title{display:flex; align-items:center; gap:8px; margin:14px 0 8px; font-size:14px; font-weight:700; color:var(--navy); flex-wrap:wrap;}
+  .lane-title .tag{font-size:11px; font-weight:700; border-radius:6px; padding:1px 8px; color:#fff;}
+  .tag-a{background:var(--navy);} .tag-b{background:var(--navy2);}
+  .lane-title .desc{font-size:12px; color:var(--sub); font-weight:400;}
+  .task{border:1px solid var(--grid); border-left:4px solid var(--navy4); border-radius:8px; padding:9px 11px; margin-bottom:8px; background:#fff;}
+  .task .row1{display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px;}
+  .task .row2{margin-top:6px;}
+  .member{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:#fff; border-radius:6px; padding:1px 9px;}
+  .m-A{background:var(--navy);} .m-B{background:var(--navy2);} .m-C{background:var(--amber);} .m-D{background:var(--red);} .m-E{background:var(--green);}
+  .src{font-size:12px; color:var(--sub); background:var(--bg); border-radius:6px; padding:1px 8px;}
+  .q{font-size:13px; font-weight:700; color:var(--ink);}
+  .out{font-size:12px; background:var(--navy4); color:var(--navy); border-radius:6px; padding:1px 8px; font-weight:600;}
+  .arrow{color:var(--navy3); font-weight:700; font-size:13px;}
+  /* ===== 数据明细 ===== */
+  .dfile{font-size:11.5px; font-family:Consolas,"Courier New",monospace; color:var(--navy); background:#EEF1F6; border-radius:5px; padding:1px 7px; display:inline-block; overflow-wrap:anywhere;}
+  .dfields{margin-top:4px; font-size:12px; color:var(--sub); line-height:1.7; overflow-wrap:anywhere;}
+  .dfields code{font-family:Consolas,"Courier New",monospace; color:#2C5A41; background:#F0F5F1; padding:0 5px; border-radius:3px; font-size:11px;}
+  .dfields b{color:var(--ink);}
+  /* ===== 时间轴 ===== */
+  .tl{display:grid; grid-template-columns:1fr; gap:0; margin-top:10px;}
+  .tl .node{display:grid; grid-template-columns:74px 12px 1fr; gap:10px; align-items:start;}
+  .tl .date{font-size:12.5px; font-weight:700; color:var(--navy); text-align:right; padding-top:2px;}
+  .tl .dotcol{display:flex; justify-content:center; position:relative; height:100%;}
+  .tl .dot{width:10px; height:10px; border-radius:50%; background:var(--amber); position:relative; top:5px; flex-shrink:0;}
+  .tl .dotcol::before{content:""; position:absolute; top:16px; bottom:-2px; width:2px; background:var(--navy4);}
+  .tl .node:last-child .dotcol::before{display:none;}
+  .tl .body{font-size:12.5px; padding:0 0 14px; color:var(--sub);}
+  .tl .body b{color:var(--ink);}
+  /* ===== 底部说明 ===== */
+  .foot{margin-top:14px; font-size:12px; color:var(--sub); background:var(--bg); border:1px dashed var(--grid); border-radius:8px; padding:9px 12px;}
+  .foot b{color:var(--ink);}
+  @media (min-width:720px){
+    .calib-grid{grid-template-columns:repeat(5,1fr);}
+    .wrap{padding:24px 28px 48px;}
+    .hero h1{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">六城研究 · 中期大作业</div>
+    <h1>分析阶段：口径统一与任务分工</h1>
+    <div class="meta">
+      <span>2026-10-27 · 第 5 周</span>
+      <span>阶段：<b>数据链已完成</b>，转入分析</span>
+      <span>主表：<b>3,450 行 × 29 列</b></span>
+      <span>口径：<b>已拍板</b> <span class="badge-done">7 条</span></span>
+    </div>
+  </header>
+
+  <!-- ========== 第一步 口径 ========== -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="step">第一步</span>
+      <h2>统一口径（2026-10-27 已拍板，7 条，写入 GAPS）</h2>
+      <span class="note">五个人五套做法 = 图对不上，以下全组执行</span>
+    </div>
+    <div class="calib-grid">
+      <div class="calib done"><div class="no">口径 01 <span class="state">已定</span></div><h3>周序列平滑</h3><p>命中率/病例先做 <b>4 周滚动均值</b> 再分析趋势与相位；不平滑时 Q2 领先滞后算出来是噪声。</p></div>
+      <div class="calib done"><div class="no">口径 02 <span class="state">已定</span></div><h3>标准化：z-score</h3><p>跨城比较统一用 <b>z-score 标准化</b>；per100k 仅作报告辅助口径，全组一致。</p></div>
+      <div class="calib done"><div class="no">口径 03 <span class="state">已定</span></div><h3>缺失不补 0</h3><p>流感 1915–1919 无 Tycho、报刊 209 周无覆盖 → 一律 <b>NA 显式排除</b>，绝不填 0。</p></div>
+      <div class="calib done"><div class="no">口径 04 <span class="state">已定</span></div><h3>显著性阈值</h3><p>统一约定 <b>p&lt;0.05</b> 为显著，边缘区间单独标注，全组一致。</p></div>
+      <div class="calib done"><div class="no">口径 05 <span class="state">已定</span></div><h3>图模板</h3><p>每图 = <b>问题式标题 + 范围/单位/来源</b> 标注（大作业硬要求），配色沿用既有风格。</p></div>
+      <div class="calib done"><div class="no">口径 06 <span class="state">已定</span></div><h3>相关指标</h3><p><b>Pearson 为主</b>，Spearman 作稳健性对照；两者同方向且量级相近才报告，否则注明差异。</p></div>
+      <div class="calib done"><div class="no">口径 07 <span class="state">已定</span></div><h3>流感整段排除</h3><p>流感相关分析 <b>整段排除 1915–1919</b>（Tycho 无病例），报告中注明口径。</p></div>
+    </div>
+  </section>
+
+  <!-- ========== 第二步 分工 ========== -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="step">第二步</span>
+      <h2>双线并行分工（2026-10-27 调整版）</h2>
+      <span class="note">采集者 → 对应分析问题；Q5 移交 D，E 转整合与材料。数据文件均位于 data\ 下</span>
+    </div>
+
+    <div class="lane-title"><span class="tag tag-a">线 A</span>分析阶段（本周主线，每人 1 题 + 1 幅核心图）<span class="desc">10/27 – 11/2</span></div>
+
+    <div class="task" style="border-left-color:var(--navy);">
+      <div class="row1"><span class="member m-A">A</span><span class="src">采集：报刊 OCR</span><span class="arrow">→</span><span class="q">Q1 疫情增加时报刊关注是否同步上升？</span><span class="out">周序列双轴图</span></div>
+      <div class="row2">
+        <span class="dfile">data\integrated\weekly_sixcities_1915_1922_1930_1932.csv</span>
+        <div class="dfields">字段：<code>np_flu_rate</code> <code>np_polio_rate</code> <code>np_diph_rate</code>（报刊强词命中率）× <code>flu_rate_per100k</code> <code>diph_rate_per100k</code> <code>polio_rate_per100k</code>（人均发病率），z-score 后比较；键 <code>city</code> <code>sunday_date</code>；覆盖检查 <code>np_pages</code>。流感仅用 1920–1922＋1930–1932（口径 07）。</div>
+      </div>
+    </div>
+
+    <div class="task" style="border-left-color:var(--navy2);">
+      <div class="row1"><span class="member m-B">B</span><span class="src">采集：Tycho 疫情</span><span class="arrow">→</span><span class="q">Q2 媒体关注领先还是滞后疫情？</span><span class="out">滞后相关曲线 -4~+4 周</span></div>
+      <div class="row2">
+        <span class="dfile">data\integrated\weekly_sixcities_1915_1922_1930_1932.csv</span>
+        <div class="dfields">字段：<code>np_flu_rate</code> <code>np_polio_rate</code> <code>np_diph_rate</code> × <code>flu_cases</code> <code>polio_cases</code> <code>diph_cases</code>；按 <code>sunday_date</code> 排序，两组各做 <b>4 周平滑</b>（口径 01）后算滞后相关；Pearson+Spearman（口径 06）。流感跳过 1915–1919（口径 07）。</div>
+      </div>
+    </div>
+
+    <div class="task" style="border-left-color:var(--amber);">
+      <div class="row1"><span class="member m-C">C</span><span class="src">采集：NOAA 气象</span><span class="arrow">→</span><span class="q">Q3 温度/降水/降雪异常与疫情强度？</span><span class="out">分病种气候-疫情图</span></div>
+      <div class="row2">
+        <span class="dfile">data\integrated\weekly_sixcities_1915_1922_1930_1932.csv</span>
+        <div class="dfields">字段：<code>tavg_avg</code> <code>tmax_avg</code> <code>tmin_avg</code> <code>prcp_sum</code> <code>snow_sum</code>（周值 z-score 距平化）× <code>flu_cases</code> <code>polio_cases</code> <code>diph_cases</code>；质量列 <code>n_stations</code> <code>n_days</code> 做敏感性；NOAA 缺周=NA（口径 03）。</div>
+      </div>
+    </div>
+
+    <div class="task" style="border-left-color:var(--red);">
+      <div class="row1"><span class="member m-D">D</span><span class="src">采集：人口（普查卷）</span><span class="arrow">→</span><span class="q">Q4 人口/结构能否解释城市差异？</span><span class="out">城市对比散点图</span></div>
+      <div class="row2">
+        <span class="dfile">data\integrated\weekly_sixcities_1915_1922_1930_1932.csv</span>
+        <div class="dfields">字段：<code>population</code> × <code>*_rate_per100k</code>（人均发病率）× <code>np_*_rate</code>（各城命中率）；<code>city</code> 分组。溯源：<code>data\cleaned\nhgis\population_clean.csv</code>（普查原值，口径 G8）、<code>nhgis_points_geo.csv</code>（经纬度）；注意 LA 仅 402 周覆盖。</div>
+      </div>
+    </div>
+
+    <div class="task" style="border-left-color:var(--red);">
+      <div class="row1"><span class="member m-D">D</span><span class="src">顺延：Q4 方法复用</span><span class="arrow">→</span><span class="q">Q5 城市"疫情-气候-媒体"响应类型聚类？</span><span class="out">聚类图（K 值报告说明）</span></div>
+      <div class="row2">
+        <span class="dfile">data\integrated\weekly_sixcities_1915_1922_1930_1932.csv</span>
+        <div class="dfields">字段：疫情 <code>*_cases</code> 或 <code>*_rate_per100k</code>；气象 <code>tavg_avg</code> <code>prcp_sum</code> <code>snow_sum</code>（z-score）；报刊 <code>np_*_rate</code>；人口 <code>population</code>；按 <code>city</code>×窗口聚合为特征矩阵，<code>np_pages</code> 过滤低覆盖；先定缺失处理（口径 03）再聚类（口径 02 标准化）。</div>
+      </div>
+    </div>
+
+    <div class="task" style="border-left-color:var(--green);">
+      <div class="row1"><span class="member m-E">E</span><span class="src">整合（不承担分析题）</span><span class="arrow">→</span><span class="q">融合汇总：周日对账、合并 Q1–Q5、更新 GAPS</span><span class="out">汇总与协调</span></div>
+      <div class="row2">
+        <span class="dfile">data\integrated\weekly_sixcities_1915_1922_1930_1932.csv（29 列全字段）</span>
+        <div class="dfields">接收各题结果，统一口径验收（7 条）、跨题交叉核对；溯源到 <code>data\cleaned\*</code> 各单源表。</div>
+      </div>
+    </div>
+
+    <div class="lane-title"><span class="tag tag-b">线 B</span>材料准备（与分析并行，不等分析结果）<span class="desc">本周同步推进</span></div>
+
+    <div class="task" style="border-left-color:var(--navy);">
+      <div class="row1"><span class="member m-A">A</span><span class="src">报刊源卡</span><span class="arrow">→</span><span class="q">数据源卡段：报刊</span><span class="out">字段字典+采集记录</span></div>
+      <div class="row2"><div class="dfields">含词表 v2 强/弱词、单列口径、每城覆盖周数。</div></div>
+    </div>
+
+    <div class="task" style="border-left-color:var(--navy2);">
+      <div class="row1"><span class="member m-B">B</span><span class="src">疫情源卡</span><span class="arrow">→</span><span class="q">数据源卡段：Tycho</span><span class="out">字段字典+采集记录</span></div>
+      <div class="row2"><div class="dfields">含病名映射、重复键取 max、流感 1915–1919 缺失说明。</div></div>
+    </div>
+
+    <div class="task" style="border-left-color:var(--amber);">
+      <div class="row1"><span class="member m-C">C</span><span class="src">气象源卡</span><span class="arrow">→</span><span class="q">数据源卡段：NOAA</span><span class="out">字段字典+采集记录</span></div>
+      <div class="row2"><div class="dfields">含站点-城市映射、日转周规则。</div></div>
+    </div>
+
+    <div class="task" style="border-left-color:var(--red);">
+      <div class="row1"><span class="member m-D">D</span><span class="src">人口源卡</span><span class="arrow">→</span><span class="q">数据源卡段：人口（普查卷）</span><span class="out">字段字典+采集记录</span></div>
+      <div class="row2"><div class="dfields">含普查年插值口径（G8）、边界未统一说明。</div></div>
+    </div>
+
+    <div class="task" style="border-left-color:var(--green);">
+      <div class="row1"><span class="member m-E">E</span><span class="src">材料汇总（专项）</span><span class="arrow">→</span><span class="q">data_sources.md 汇总 + 多源关联图/血缘图 + 根 README + AI_USAGE 汇总</span><span class="out">必交材料</span></div>
+      <div class="row2"><div class="dfields">血缘图含实体/时间/空间/事件四维连接；AI_USAGE 每人写一段，E 汇总。</div></div>
+    </div>
+  </section>
+
+  <!-- ========== 周节奏 ========== -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="step">节奏</span>
+      <h2>本周推进（10/27 – 11/2）</h2>
+    </div>
+    <div class="tl">
+      <div class="node"><div class="date">周一/二</div><div class="dotcol"><span class="dot"></span></div><div class="body"><b>口径全部拍板</b>（7 条已写入 GAPS）；认领材料任务</div></div>
+      <div class="node"><div class="date">周三-六</div><div class="dotcol"><span class="dot"></span></div><div class="body"><b>每人 Q1–Q5 初版</b>：1 页结果 + 1 幅核心图；材料线同步产出源卡段</div></div>
+      <div class="node"><div class="date">周日</div><div class="dotcol"><span class="dot"></span></div><div class="body"><b>E 整合</b>：合并结果、跨题对账、更新 GAPS；data_sources.md 出稿</div></div>
+      <div class="node"><div class="date">11/3 起</div><div class="dotcol"><span class="dot"></span></div><div class="body"><b>第 7-8 周</b>：报告 + PPT + AI_USAGE + 根 README（全体供稿）</div></div>
+    </div>
+  </section>
+
+  <div class="foot"><b>交付约定：</b>代码 → scripts\ ｜ 结果 → analysis\ ｜ 新口径决定 → docs\GAPS.md（追加日期条目）。主表 CSV 带 BOM，读取用 <b>utf-8-sig</b>；重跑 build_integrated.py 可确定性复现。</div>
+
+</div>
+</body>
+</html>

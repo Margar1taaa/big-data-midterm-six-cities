@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f5f8b'/%3E%3Crect x='7' y='18' width='4' height='8' rx='1' fill='%23fff'/%3E%3Crect x='14' y='10' width='4' height='16' rx='1' fill='%23e8a33d'/%3E%3Crect x='21' y='6' width='4' height='20' rx='1' fill='%23fff'/%3E%3C/svg%3E">
+<title>六城疫情·气象·报刊 多源数据描述性分析报告</title>
+<style>
+:root{--ink:#14263b;--ink2:#3d5468;--line:#dde4ec;--bg:#f6f8fb;--paper:#ffffff;--accent:#1f5f8b;--accent2:#e8a33d;--ok:#2e7d5b;--warn:#b4552d;--mono:"Consolas","SFMono-Regular",monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px;}
+header.hero{background:linear-gradient(135deg,#12355b 0%,#1f5f8b 70%,#2a7ca8 100%);color:#fff;border-radius:14px;padding:34px 30px;margin-bottom:22px;}
+header.hero h1{font-size:26px;font-weight:700;letter-spacing:.5px;line-height:1.4;}
+header.hero .sub{margin-top:8px;font-size:14px;opacity:.88;}
+header.hero .meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:18px;font-size:12.5px;opacity:.8;}
+.hero .meta b{opacity:1;font-weight:600;}
+section{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px 26px;margin:18px 0;box-shadow:0 1px 3px rgba(18,38,59,.05);}
+h2{font-size:19px;margin-bottom:4px;display:flex;align-items:baseline;gap:10px;}
+h2 .no{color:var(--accent2);font-weight:800;font-size:15px;font-family:var(--mono);}
+h3{font-size:15px;margin:16px 0 8px;color:var(--accent);}
+.lead{font-size:13.5px;color:var(--ink2);margin-bottom:14px;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:14px 0 6px;}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--bg);}
+.kpi .v{font-size:22px;font-weight:800;color:var(--accent);font-family:var(--mono);}
+.kpi .l{font-size:12px;color:var(--ink2);margin-top:2px;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0;}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap;}
+th{background:#eef3f8;color:var(--ink);font-weight:600;}
+td:first-child,th:first-child{text-align:left;}
+tr:nth-child(even) td{background:#fafcfe;}
+.num{font-family:var(--mono);}
+.chart{width:100%;height:340px;margin:12px 0;}
+.chart.tall{height:400px;}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11.5px;font-weight:600;}
+.badge.ok{background:#e4f2ea;color:var(--ok);}
+.badge.warn{background:#fbead9;color:var(--warn);}
+.gapcard{background:#fdf7ec;border:1px dashed #d9b46a;border-radius:10px;padding:14px 16px;margin:8px 0;font-size:13px;}
+.gapcard b{color:#9a6b22;}
+ul.notes{font-size:12.5px;color:var(--ink2);margin:8px 0 0 18px;}
+.legend-note{font-size:11.5px;color:var(--ink2);margin-top:4px;}
+.note-line{font-size:11.5px;color:var(--ink2);margin-top:10px;}
+select.filter{font-size:13px;padding:3px 8px;border:1px solid var(--line);border-radius:6px;margin-bottom:8px;}
+footer{margin-top:24px;font-size:11.5px;color:var(--ink2);text-align:center;}
+.chart-fallback{display:none;color:var(--warn);font-size:13px;text-align:center;padding:40px 0;}
+@media(max-width:640px){.wrap{padding:12px 10px 40px;}header.hero{padding:24px 18px;}section{padding:16px 14px;}th,td{padding:4px 5px;font-size:11.5px;}h1{font-size:20px;}.chart{height:300px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <h1>六城疫情 · 气象 · 报刊 多源数据描述性分析</h1>
+  <div class="sub">《大数据原理与应用》中期大作业 · 1916–1953 · 流感 / 脊灰 / 白喉 × 气象 × 报刊关注</div>
+  <div class="meta"><span>数据源：<b>4 类</b>（Tycho / NOAA / 人口普查卷 / 报刊 OCR）</span><span>原始总量：<b>约 4.3 GB</b>（落盘含压缩）</span><span>数据形态：<b>3 类</b>（表格 / 时间序列 / 文本）</span><span>层级：<b>Raw → Cleaned → Integrated</b></span></div>
+</header>
+
+<section>
+  <h2><span class="no">01</span> 数据全景</h2>
+  <div class="lead">四类数据源覆盖 1900–1995（主窗口 1916–1953）；下为各源 raw 与 cleaned 阶段的关键规模。</div>
+  <div class="kpis" id="kpis"></div>
+</section>
+
+<section>
+  <h2><span class="no">02</span> Tycho 疫情数据（Project Tycho LEVEL2）</h2>
+  <div class="lead">原始 388.9 MB CSV 全量 <b>2,934,886 行</b>（1900–1960）；按六城×三病×两事件清洗后为 <b>40,318 周行</b>。已知缺口：六城流感病例整体缺 1918–1919 年（纽约仅 1919 年数行）——已列入 GAPS G2。</div>
+  <h3>六城流感病例数（周数据按年聚合）</h3>
+  <div class="chart" id="ch_flu"></div>
+  <h3>六城白喉病例数（年聚合）</h3>
+  <div class="chart" id="ch_diph"></div>
+  <h3>六城脊灰病例数（年聚合）</h3>
+  <div class="chart" id="ch_polio"></div>
+  <div class="legend-note">口径：cleaned_tycho_weekly_sixcities.csv 按 (city, disease, event, year) 求和；缺失年份为 null 占位。流感 Y 轴为对数刻度以便呈现纽约峰值（最高单周 30,456）。</div>
+  <h3>清洗后 30 组明细</h3>
+  <select class="filter" id="tycho_filter">
+    <option value="all">全部 30 组</option>
+    <option value="CASES">仅 CASES</option>
+    <option value="DEATHS">仅 DEATHS</option>
+  </select>
+  <div style="overflow-x:auto"><table id="tbl_tycho"></table></div>
+</section>
+
+<section>
+  <h2><span class="no">03</span> NOAA 气象数据</h2>
+  <div class="lead">原始 58 个站宽表（338.2 MB，1900–1960）；清洗为 <b>20,655 周</b>（周日起始，为融合主键）。TAVG 缺失用 (TMAX+TMIN)/2 合成。五城 1899-12-31 ~ 1959-12-27 连续 3,131 周无缺周；华盛顿至 1995 年（缺 8 周）。</div>
+  <h3>六城年均气温（周均温按年聚合）</h3>
+  <div class="chart" id="ch_tavg"></div>
+  <h3>每城覆盖与要素概况</h3>
+  <div style="overflow-x:auto"><table id="tbl_noaa"></table></div>
+</section>
+
+<section>
+  <h2><span class="no">04</span> 地理与人口（普查卷）</h2>
+  <div class="lead">六城质心已投影至 EPSG:4326（误差 &lt;1.3km，转换口径见 convert_nhgis.py）；人口为 1910/1920/1930/1940/1950 五次普查。</div>
+  <div class="chart" id="ch_pop"></div>
+  <h3>人口与十年增长率</h3>
+  <div style="overflow-x:auto"><table id="tbl_pop"></table></div>
+</section>
+
+<section>
+  <h2><span class="no">05</span> 报刊 OCR 数据（关注度）</h2>
+  <div class="lead">已入库三小城（Baltimore / Cleveland / Los Angeles）<b>32,036 页</b>、6 家报纸；三城（Washington / New York / Milwaukee）已收到 7 GB zip（<b>267,322 页</b>，已实现 zip 直读扫描脚本、全量扫描待跑）。下表为三病关键词命中率（分母=该报可检索页数）。</div>
+  <div class="chart" id="ch_hit"></div>
+  <h3>三城 zip 结构（含覆盖空缺）</h3>
+  <div style="overflow-x:auto"><table id="tbl_zip"></table></div>
+  <div class="gapcard"><b>覆盖空缺实锤：</b>Washington Evening Star 与 Milwaukee Leader 连续缺 1923–1929 七个年份；New-York Tribune 仅覆盖 1915–1922；Daily Worker 仅 1930–1932。1933–1953 无报刊覆盖（GAPS G9）。</div>
+  <h3>三小城文本规模（每页字符）</h3>
+  <div style="overflow-x:auto"><table id="tbl_text"></table></div>
+  <div class="legend-note">空页数全部为 0；Baltimore 德文报 Der Deutsche Correspondent 每页中位约 27,251 字符。</div>
+</section>
+
+<section>
+  <h2><span class="no">06</span> 缺口清单（GAPS）</h2>
+  <div class="gapcard"><b>G2 · Tycho 流感缺 1918–1919：</b>待决策——补源 / 改研究窗口 / 用报刊描述替代（未决）。</div>
+  <div class="gapcard"><b>G9 · 报刊覆盖 1915–1932：</b>1933–1953 无报刊关注度数据（未决，见上表 zip 结构）。</div>
+  <div class="gapcard"><b>G3 · 报刊词表 v1：</b>已落地待冻结；德西文报纸命中词表需抽检确认（未决）。</div>
+  <div class="gapcard"><b>G5 · Tycho 110 个重复键：</b>聚合口径待定（建议 max / 去重 / 记 dup_n）。</div>
+  <div class="note-line">完整清单见 docs\GAPS.md；报刊 80% 单源上限已获助教豁免（G7 已闭环）。</div>
+</section>
+
+<footer>生成：scripts\describe_sources.py + scripts\prepare_report_data.py · 数据口径见各清洗脚本头部注释 · 2026-10</footer>
+</div>
+<div class="chart-fallback" id="chart_fallback">图表渲染失败：ECharts 未加载（外部 CDN 不可达）。以上文字与表格仍为有效统计结果。</div>
+<script>
+window.__DATA__ = __DATA_JSON__;
+</script>
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script>
+(function(){
+"use strict";
+var D = window.__DATA__ || {};
+var el = document.getElementById("chart_fallback");
+function fmt(n){ if(n===null||n===undefined||n==="")return "—"; if(typeof n!=="number"||isNaN(n))return n; return Number(n).toLocaleString("zh-CN"); }
+
+/* KPI */
+(function(){
+  var k = document.getElementById("kpis");
+  var items = [
+    ["2,934,886","Tycho raw 行数"],
+    ["40,318","Tycho cleaned 周行"],
+    ["20,655","NOAA cleaned 周"],
+    ["58","NOAA raw 文件"],
+    ["32,036","报刊三城页"],
+    ["267,322","报刊三城 zip 页"],
+    ["30","人口普查记录"]
+  ];
+  k.innerHTML = items.map(function(x){ return '<div class="kpi"><div class="v">'+x[0]+'</div><div class="l">'+x[1]+'</div></div>'; }).join("");
+})();
+
+/* --- ECharts helpers --- */
+var hasEcharts = (typeof echarts !== "undefined");
+function mk(id){ if(!hasEcharts)return null; var c=document.getElementById(id); if(!c)return null; return echarts.init(c); }
+function yearsOf(series){ var s=new Set(); Object.keys(series).forEach(function(y){ if(series[y]!==null && series[y]!==undefined) s.add(parseInt(y,10)); }); return Array.from(s).sort(function(a,b){return a-b;}); }
+function toYearSeries(dict, from, to){ var out=[]; for(var y=from;y<=to;y++){ var v=dict[String(y)]; out.push(v===undefined?null:Math.round(v*10)/10); } return out; }
+function lineOpt(x, series, opts){
+  var o = { title: opts&&opts.title?{text:opts.title,left:0,top:0,textStyle:{fontSize:14,color:"#14263b"}}:undefined,
+    tooltip:{trigger:"axis",triggerOn:"mousemove|click",renderMode:"richText",confine:true},
+    grid:{left:46,right:22,top:opts&&opts.title?46:18,bottom:30,containLabel:true},
+    xAxis:{type:"category",data:x,axisLabel:{fontSize:10}},
+    yAxis:{type:"value",name:opts&&opts.name||"",nameTextStyle:{fontSize:10},axisLabel:{fontSize:10},logBase:10},
+    series:series.map(function(s){ return {name:s.name,type:"line",data:s.data,smooth:true,symbol:"circle",symbolSize:4,lineStyle:{width:2}}; }),
+    legend:{top:opts&&opts.title?30:4,type:"scroll",textStyle:{fontSize:10}} };
+  return o;
+}
+
+/* 2.1 flu CASES */
+(function(){
+  if(!hasEcharts)return;
+  var src=D.tycho_year||{};
+  var cities=["BALTIMORE","CLEVELAND","LOS ANGELES","MILWAUKEE","NEW YORK","WASHINGTON"];
+  var cnames={BALTIMORE:"巴尔的摩",CLEVELAND:"克利夫兰","LOS ANGELES":"洛杉矶",MILWAUKEE:"密尔沃基","NEW YORK":"纽约",WASHINGTON:"华盛顿"};
+  var from=1919,to=1953;
+  var x=[];for(var y=from;y<=to;y++)x.push(y);
+  var ser=cities.map(function(c){
+    var d=src[c+"|INFLUENZA|CASES"]||{};
+    return {name:cnames[c],data:toYearSeries(d,from,to)};
+  });
+  var opt=lineOpt(x,ser,{title:"六城流感病例年合计（对数轴）",name:"病例数"});
+  opt.yAxis.logBase=10;opt.yAxis.type="log";
+  var ch=mk("ch_flu"); if(ch){ch.setOption(opt); window.addEventListener("resize",function(){ch.resize();});}
+})();
+
+/* 2.2 diph CASES */
+(function(){
+  if(!hasEcharts)return;
+  var src=D.tycho_year||{};
+  var cities=["BALTIMORE","CLEVELAND","LOS ANGELES","MILWAUKEE","NEW YORK","WASHINGTON"];
+  var cnames={BALTIMORE:"巴尔的摩",CLEVELAND:"克利夫兰","LOS ANGELES":"洛杉矶",MILWAUKEE:"密尔沃基","NEW YORK":"纽约",WASHINGTON:"华盛顿"};
+  var from=1906,to=1953;
+  var x=[];for(var y=from;y<=to;y++)x.push(y);
+  var ser=cities.map(function(c){
+    var d=src[c+"|DIPHTHERIA|CASES"]||{};
+    return {name:cnames[c],data:toYearSeries(d,from,to)};
+  });
+  var opt=lineOpt(x,ser,{title:"六城白喉病例年合计",name:"病例数"});
+  var ch=mk("ch_diph"); if(ch){ch.setOption(opt); window.addEventListener("resize",function(){ch.resize();});}
+})();
+
+/* 2.3 polio CASES */
+(function(){
+  if(!hasEcharts)return;
+  var src=D.tycho_year||{};
+  var cities=["BALTIMORE","CLEVELAND","LOS ANGELES","MILWAUKEE","NEW YORK","WASHINGTON"];
+  var cnames={BALTIMORE:"巴尔的摩",CLEVELAND:"克利夫兰","LOS ANGELES":"洛杉矶",MILWAUKEE:"密尔沃基","NEW YORK":"纽约",WASHINGTON:"华盛顿"};
+  var from=1912,to=1953;
+  var x=[];for(var y=from;y<=to;y++)x.push(y);
+  var ser=cities.map(function(c){
+    var d=src[c+"|POLIOMYELITIS|CASES"]||{};
+    return {name:cnames[c],data:toYearSeries(d,from,to)};
+  });
+  var opt=lineOpt(x,ser,{title:"六城脊灰病例年合计（对数轴）",name:"病例数"});
+  opt.yAxis.logBase=10;opt.yAxis.type="log";
+  var ch=mk("ch_polio"); if(ch){ch.setOption(opt); window.addEventListener("resize",function(){ch.resize();});}
+})();
+
+/* 3. NOAA tavg */
+(function(){
+  if(!hasEcharts)return;
+  var src=D.noaa_year||{};
+  var cities=["BALTIMORE","CLEVELAND","LOS ANGELES","MILWAUKEE","NEW YORK","WASHINGTON"];
+  var cnames={BALTIMORE:"巴尔的摩",CLEVELAND:"克利夫兰","LOS ANGELES":"洛杉矶",MILWAUKEE:"密尔沃基","NEW YORK":"纽约",WASHINGTON:"华盛顿"};
+  var from=1900,to=1959;
+  var x=[];for(var y=from;y<=to;y++)x.push(String(y));
+  var ser=cities.map(function(c){
+    var d=src[c]||{};
+    return {name:cnames[c],data:x.map(function(y){ var v=d[y]; return v?v.tavg:null; })};
+  });
+  var opt=lineOpt(x,ser,{title:"六城年均气温（℃，周均温聚合）",name:"℃"});
+  opt.yAxis.scale=true;
+  var ch=mk("ch_tavg"); if(ch){ch.setOption(opt); window.addEventListener("resize",function(){ch.resize();});}
+})();
+
+/* 4. pop */
+(function(){
+  if(!hasEcharts)return;
+  var src=D.population||{};
+  var cities=["Baltimore","Cleveland","Los Angeles","Milwaukee","New York","Washington"];
+  var x=["1910","1920","1930","1940","1950"];
+  var ser=cities.map(function(c){
+    var d=src[c]||{};
+    return {name:c,data:x.map(function(y){ var v=d[y]; return v===undefined?null:v; })};
+  });
+  var opt=lineOpt(x,ser,{title:"六城人口普查序列（1910–1950）",name:"人"});
+  opt.yAxis.axisLabel.formatter=function(v){return (v/10000).toFixed(1)+"万";};
+  var ch=mk("ch_pop"); if(ch){ch.setOption(opt); window.addEventListener("resize",function(){ch.resize();});}
+})();
+
+/* 5. newspaper hit rates */
+(function(){
+  if(!hasEcharts)return;
+  var rows=D.news_3cities||[];
+  var items=rows.map(function(r){
+    var label=r.city+" · "+r.paper;
+    return {name:label, flu:Math.round((r.flu_rate||0)*10000)/100, polio:Math.round((r.polio_rate||0)*10000)/100, diph:Math.round((r.diph_rate||0)*10000)/100};
+  });
+  items.reverse();
+  var opt={title:{text:"三城报刊三病命中率（%）",left:0,top:0,textStyle:{fontSize:14,color:"#14263b"}},
+    tooltip:{trigger:"axis",triggerOn:"mousemove|click",renderMode:"richText",confine:true},
+    legend:{top:32,textStyle:{fontSize:10}},
+    grid:{left:150,right:40,top:52,bottom:24,containLabel:true},
+    xAxis:{type:"value",axisLabel:{fontSize:10},name:"命中率 %",nameTextStyle:{fontSize:10}},
+    yAxis:{type:"category",data:items.map(function(i){return i.name;}),axisLabel:{fontSize:10}},
+    series:[
+      {name:"流感",type:"bar",data:items.map(function(i){return i.flu;}),barWidth:"26%"},
+      {name:"脊灰",type:"bar",data:items.map(function(i){return i.polio;}),barWidth:"26%"},
+      {name:"白喉",type:"bar",data:items.map(function(i){return i.diph;}),barWidth:"26%"}
+    ]};
+  var ch=mk("ch_hit"); if(ch){ch.setOption(opt); window.addEventListener("resize",function(){ch.resize();});}
+})();
+
+/* tables */
+function tbl(id, head, rows){
+  var t=document.getElementById(id); if(!t)return;
+  var html='<thead><tr>'+head.map(function(h){return '<th>'+h+'</th>';}).join('')+'</tr></thead><tbody>';
+  rows.forEach(function(r){ html+='<tr>'+r.map(function(c){return '<td'+(typeof c==="number"?' class="num"':'')+'>'+(typeof c==="number"?fmt(c):c)+'</td>';}).join('')+'</tr>'; });
+  html+='</tbody>'; t.innerHTML=html;
+}
+
+(function(){
+  var head=["城市","病种","事件","周行数","年份范围","病例中位","病例均值","峰值","缺失周"];
+  var rows=(D.tycho_cleaned_stats||[]).map(function(r){
+    return [r.city,r.disease,r.event,r.rows,(r.year_min+"–"+r.year_max),r.number_median,r.number_mean,r.number_max,r.missing_weeks];
+  });
+  window.__TYCHO_ROWS=rows;
+  var f=document.getElementById("tycho_filter");
+  function render(){
+    var v=f.value;
+    var sel= v==="all"? rows : rows.filter(function(r){return r[2]===v;});
+    tbl("tbl_tycho",head,sel);
+  }
+  f.addEventListener("change",render); render();
+})();
+
+(function(){
+  var head=["城市","周数","预期周","缺周","起止","站数(均值)","年均温中位℃","年降水均值(周和)","雪均值(周和)"];
+  var rows=(D.noaa_cleaned_stats||[]).map(function(r){
+    return [r.city,r.weeks,r.expected_weeks,r.missing_weeks,(r.date_min.slice(0,10)+" ~ "+r.date_max.slice(0,10)),r.n_stations_mean,r.tavg_median,r.prcp_mean,r.snow_mean];
+  });
+  tbl("tbl_noaa",head,rows);
+})();
+
+(function(){
+  var head=["城市","普查年","人口","十年增长率%"];
+  var rows=(D.nhgis_stats||[]).map(function(r){ return [r.city,r.census_year,Number(r.population),r.decadal_growth_pct===""?"—":Number(r.decadal_growth_pct)]; });
+  tbl("tbl_pop",head,rows);
+})();
+
+(function(){
+  var head=["城市","报纸","页数","覆盖年份","年数","缺失年份"];
+  var rows=(D.news_zip||[]).map(function(r){ return [r.city,r.paper,r.pages,(r.year_min+"–"+r.year_max),r.n_years,r.missing_years||"—"]; });
+  tbl("tbl_zip",head,rows);
+})();
+
+(function(){
+  var head=["城市","报纸","页数","总字符","每页中位字符","每页均值","每页最大","空页"];
+  var rows=(D.news_text||[]).map(function(r){ return [r.city,r.paper,r.pages,r.total_chars,r.chars_median,r.chars_mean,r.chars_max,r.empty_pages]; });
+  tbl("tbl_text",head,rows);
+})();
+
+/* fallback */
+window.addEventListener("load",function(){
+  if(!hasEcharts){ el.style.display="block"; }
+});
+})();
+</script>
+</body>
+</html>

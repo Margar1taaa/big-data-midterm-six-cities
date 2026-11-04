@@ -1,0 +1,21 @@
+# Normalize text files across Windows/macOS/Linux clones.
+* text=auto
+
+*.py text eol=lf
+*.ps1 text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.csv text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.svg text eol=lf
+
+# Office documents, images, PDFs, and archives are binary.
+*.docx binary
+*.pptx binary
+*.xlsx binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.zip binary

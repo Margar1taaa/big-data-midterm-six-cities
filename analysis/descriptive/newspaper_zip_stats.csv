@@ -1,0 +1,5 @@
+﻿city,paper,pages,year_min,year_max,n_years,missing_years
+Milwaukee,Milwaukee Leader,39381,1915,1932,11,1923;1924;1925;1926;1927;1928;1929
+New York,Daily Worker,4154,1930,1932,3,
+New York,New-York Tribune,75355,1915,1922,8,
+Washington,Evening Star,148432,1915,1932,11,1923;1924;1925;1926;1927;1928;1929

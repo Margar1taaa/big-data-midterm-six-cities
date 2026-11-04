@@ -1,0 +1,81 @@
+{
+  "tycho_raw": {
+    "rows": 2934886,
+    "diseases": 33,
+    "years": [
+      1900,
+      1960
+    ],
+    "missing_number_pct": 0.0,
+    "city_raw_rows": {
+      "BALTIMORE": 26180,
+      "CLEVELAND": 26292,
+      "LOS ANGELES": 25229,
+      "MILWAUKEE": 23808,
+      "NEW YORK": 41535,
+      "WASHINGTON": 22689
+    }
+  },
+  "tycho_cleaned": {
+    "total_rows": 40318,
+    "groups": 30
+  },
+  "noaa_raw": {
+    "files": 58
+  },
+  "noaa_cleaned": {
+    "total_weeks": 20655
+  },
+  "nhgis": {
+    "points": [
+      {
+        "city": "New York City",
+        "lon": "-74.00599",
+        "lat": "40.714215"
+      },
+      {
+        "city": "Washington",
+        "lon": "-77.03638",
+        "lat": "38.895057"
+      },
+      {
+        "city": "Milwaukee",
+        "lon": "-87.90648",
+        "lat": "43.038847"
+      },
+      {
+        "city": "Los Angeles",
+        "lon": "-118.243669",
+        "lat": "34.05218"
+      },
+      {
+        "city": "Cleveland",
+        "lon": "-81.69542",
+        "lat": "41.49944"
+      },
+      {
+        "city": "Baltimore",
+        "lon": "-76.612204",
+        "lat": "39.29033"
+      }
+    ],
+    "population_years": [
+      1910,
+      1920,
+      1930,
+      1940,
+      1950
+    ]
+  },
+  "newspaper_3cities": {
+    "total_pages": 32036,
+    "papers": 6
+  },
+  "newspaper_text": {
+    "files": 32036
+  },
+  "newspaper_zip": {
+    "total_pages": 267322,
+    "papers": 4
+  }
+}

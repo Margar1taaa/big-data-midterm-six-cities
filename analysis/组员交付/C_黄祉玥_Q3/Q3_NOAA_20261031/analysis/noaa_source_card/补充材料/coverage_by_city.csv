@@ -1,0 +1,7 @@
+﻿city,master_weeks,cleaned_weeks,cleaned_start,cleaned_end,mapping_files,mapping_unique_station_ids,n_days_min,n_days_max,n_stations_min,n_stations_max,tavg_avg_non_na,tmax_avg_non_na,tmin_avg_non_na,prcp_sum_non_na,snow_sum_non_na,tavg_avg_missing,tmax_avg_missing,tmin_avg_missing,prcp_sum_missing,snow_sum_missing
+BALTIMORE,575,3131,1899-12-31,1959-12-27,10,10,6.2,7,8,10,575,575,575,575,575,0,0,0,0,0
+CLEVELAND,575,3131,1899-12-31,1959-12-27,10,11,6.1,7,7,10,575,575,575,575,575,0,0,0,0,0
+LOS ANGELES,575,3131,1899-12-31,1959-12-27,10,10,5.7,7,7,10,575,575,575,574,284,0,0,0,1,291
+MILWAUKEE,575,3131,1899-12-31,1959-12-27,10,10,4.7,7,2,5,575,575,575,575,528,0,0,0,0,47
+NEW YORK,575,3131,1899-12-31,1959-12-27,8,8,6,7,3,4,575,575,575,575,575,0,0,0,0,0
+WASHINGTON,575,5000,1899-12-31,1995-12-17,10,10,5,7,2,4,575,575,575,575,575,0,0,0,0,0

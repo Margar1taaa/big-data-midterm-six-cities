@@ -1,0 +1,31 @@
+﻿city_id,city_name,state_abbr,census_year,population,tycho_city,source_title,boundary_comparability
+US_NY_NEW_YORK,New York City,NY,1910,4766883,NEW YORK,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_NY_NEW_YORK,New York City,NY,1920,5620048,NEW YORK,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_NY_NEW_YORK,New York City,NY,1930,6930446,NEW YORK,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_NY_NEW_YORK,New York City,NY,1940,7454995,NEW YORK,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_NY_NEW_YORK,New York City,NY,1950,7891957,NEW YORK,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_DC_WASHINGTON,Washington,DC,1910,331069,WASHINGTON,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_DC_WASHINGTON,Washington,DC,1920,437571,WASHINGTON,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_DC_WASHINGTON,Washington,DC,1930,486869,WASHINGTON,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_DC_WASHINGTON,Washington,DC,1940,663091,WASHINGTON,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_DC_WASHINGTON,Washington,DC,1950,802178,WASHINGTON,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_WI_MILWAUKEE,Milwaukee,WI,1910,373857,MILWAUKEE,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_WI_MILWAUKEE,Milwaukee,WI,1920,457147,MILWAUKEE,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_WI_MILWAUKEE,Milwaukee,WI,1930,578249,MILWAUKEE,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_WI_MILWAUKEE,Milwaukee,WI,1940,587472,MILWAUKEE,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_WI_MILWAUKEE,Milwaukee,WI,1950,637392,MILWAUKEE,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_CA_LOS_ANGELES,Los Angeles,CA,1910,319198,LOS ANGELES,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_CA_LOS_ANGELES,Los Angeles,CA,1920,576673,LOS ANGELES,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_CA_LOS_ANGELES,Los Angeles,CA,1930,1238048,LOS ANGELES,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_CA_LOS_ANGELES,Los Angeles,CA,1940,1504277,LOS ANGELES,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_CA_LOS_ANGELES,Los Angeles,CA,1950,1970358,LOS ANGELES,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_OH_CLEVELAND,Cleveland,OH,1910,560663,CLEVELAND,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_OH_CLEVELAND,Cleveland,OH,1920,796841,CLEVELAND,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_OH_CLEVELAND,Cleveland,OH,1930,900429,CLEVELAND,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_OH_CLEVELAND,Cleveland,OH,1940,878336,CLEVELAND,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_OH_CLEVELAND,Cleveland,OH,1950,914808,CLEVELAND,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_MD_BALTIMORE,Baltimore,MD,1910,558485,BALTIMORE,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_MD_BALTIMORE,Baltimore,MD,1920,733826,BALTIMORE,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_MD_BALTIMORE,Baltimore,MD,1930,804874,BALTIMORE,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_MD_BALTIMORE,Baltimore,MD,1940,859100,BALTIMORE,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_MD_BALTIMORE,Baltimore,MD,1950,949708,BALTIMORE,1950 Census of Population Volume I Number of Inhabitants,not_harmonized

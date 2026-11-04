@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-29",
+  "weather_metadata_source": "inputs/气象口径确认.md",
+  "weather_units": {
+    "tavg_avg": "℉",
+    "prcp_sum": "英寸",
+    "snow_sum": "英寸"
+  },
+  "precipitation_aggregation": "各站周内有效观测日日均，再对站点取平均；非周累计",
+  "python": "3.11.5",
+  "packages": {
+    "numpy": "1.26.4",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "matplotlib": "3.10.8",
+    "scikit-learn": "1.8.0",
+    "nbformat": "5.10.4",
+    "nbclient": "0.10.4",
+    "ipykernel": "6.29.5"
+  },
+  "inputs_sha256": {
+    "nhgis_place_points_1930_six_cities.csv": "9f1746172b6e9dc46da4ad5342f6e9f013d4a351c65598d244bf4a4228fa2bcb",
+    "nhgis_points_geo.csv": "49665f8727bbbccbf1ba1cdc62a1462c834022082fc39e36b860795e43dbae57",
+    "population_clean.csv": "eda4419f04a18f22363d84307a0627ac936743247f0e9f77c5f8939b9532f05a",
+    "population_sample.csv": "bb4f29a12b4e85947ea99340708e0974ca22ce097d2c410ca0884cde42dc6fc4",
+    "weekly_sixcities_1915_1922_1930_1932.csv": "fd5e47ae12410702b2e532d32f55abe957f42a293bfb424bfe4b648a0ac3eacd",
+    "数据说明卡.md": "df99ad8a662697e0d2ea3ac5da0687fcbfd0c05213b5fc742c1fde2a4138c90a",
+    "气象口径确认.md": "dec82cc4e201a41bca5f771fd46c1151f2039e5cf40158cdcf8bc2979a8d5c48"
+  },
+  "q4_common_weeks": {
+    "1915-1922": 110,
+    "1930-1932": 106
+  },
+  "q5_common_weeks": 106,
+  "selected_k": 2,
+  "features": [
+    "diph_rate_per100k",
+    "np_diph_rate",
+    "tavg_avg",
+    "prcp_sum",
+    "snow_sum",
+    "population"
+  ],
+  "analysis_window": [
+    1930,
+    1932
+  ],
+  "disease": "diph",
+  "standardization_ddof": 0
+}

@@ -1,0 +1,7 @@
+﻿city,paper,pages,year_min,year_max,n_years,flu_hits,flu_rate,polio_hits,polio_rate,diph_hits,diph_rate
+Baltimore,Der Deutsche Correspondent,10612,1915,1917,3,265,0.025,257,0.0242,24,0.0023
+Baltimore,Telegraf,3314,1918,1932,8,52,0.0157,0,0.0,2,0.0006
+Cleveland,The Gazette,2296,1915,1932,11,282,0.1228,10,0.0044,7,0.003
+Los Angeles,California Eagle,662,1915,1930,6,39,0.0589,3,0.0045,0,0.0
+Los Angeles,La Opinion,13510,1930,1932,3,704,0.0521,53,0.0039,47,0.0035
+Los Angeles,La Prensa,1642,1917,1922,6,276,0.1681,1,0.0006,8,0.0049

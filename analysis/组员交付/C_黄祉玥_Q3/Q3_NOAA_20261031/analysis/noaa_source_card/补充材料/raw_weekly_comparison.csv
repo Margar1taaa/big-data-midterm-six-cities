@@ -1,0 +1,85 @@
+﻿city,scope,field,compared_weeks,matching_weeks,different_weeks,max_abs_difference
+BALTIMORE,all_cleaned,tavg_avg,3131,3131,0,0.01
+BALTIMORE,all_cleaned,tmax_avg,3131,3131,0,0
+BALTIMORE,all_cleaned,tmin_avg,3131,3131,0,0
+BALTIMORE,all_cleaned,prcp_sum,3131,3131,0,0.01
+BALTIMORE,all_cleaned,snow_sum,3131,3131,0,0.01
+BALTIMORE,all_cleaned,n_days,3131,3131,0,0
+BALTIMORE,all_cleaned,n_stations,3131,3131,0,0
+BALTIMORE,study_window,tavg_avg,575,575,0,0.01
+BALTIMORE,study_window,tmax_avg,575,575,0,0
+BALTIMORE,study_window,tmin_avg,575,575,0,0
+BALTIMORE,study_window,prcp_sum,575,575,0,0.01
+BALTIMORE,study_window,snow_sum,575,575,0,0
+BALTIMORE,study_window,n_days,575,575,0,0
+BALTIMORE,study_window,n_stations,575,575,0,0
+CLEVELAND,all_cleaned,tavg_avg,3131,3131,0,0.01
+CLEVELAND,all_cleaned,tmax_avg,3131,3131,0,0
+CLEVELAND,all_cleaned,tmin_avg,3131,3131,0,0.01
+CLEVELAND,all_cleaned,prcp_sum,3131,3131,0,0.01
+CLEVELAND,all_cleaned,snow_sum,3131,3131,0,0.01
+CLEVELAND,all_cleaned,n_days,3131,3131,0,0
+CLEVELAND,all_cleaned,n_stations,3131,3131,0,0
+CLEVELAND,study_window,tavg_avg,575,575,0,0
+CLEVELAND,study_window,tmax_avg,575,575,0,0
+CLEVELAND,study_window,tmin_avg,575,575,0,0
+CLEVELAND,study_window,prcp_sum,575,575,0,0.01
+CLEVELAND,study_window,snow_sum,575,575,0,0
+CLEVELAND,study_window,n_days,575,575,0,0
+CLEVELAND,study_window,n_stations,575,575,0,0
+LOS ANGELES,all_cleaned,tavg_avg,3131,3131,0,0.01
+LOS ANGELES,all_cleaned,tmax_avg,3131,3131,0,0.01
+LOS ANGELES,all_cleaned,tmin_avg,3131,3131,0,0.01
+LOS ANGELES,all_cleaned,prcp_sum,3131,3131,0,0.01
+LOS ANGELES,all_cleaned,snow_sum,3131,3131,0,0
+LOS ANGELES,all_cleaned,n_days,3131,3131,0,0
+LOS ANGELES,all_cleaned,n_stations,3131,3131,0,0
+LOS ANGELES,study_window,tavg_avg,575,575,0,0
+LOS ANGELES,study_window,tmax_avg,575,575,0,0.01
+LOS ANGELES,study_window,tmin_avg,575,575,0,0
+LOS ANGELES,study_window,prcp_sum,575,575,0,0
+LOS ANGELES,study_window,snow_sum,575,575,0,0
+LOS ANGELES,study_window,n_days,575,575,0,0
+LOS ANGELES,study_window,n_stations,575,575,0,0
+MILWAUKEE,all_cleaned,tavg_avg,3131,3131,0,0.01
+MILWAUKEE,all_cleaned,tmax_avg,3131,3131,0,0
+MILWAUKEE,all_cleaned,tmin_avg,3131,3131,0,0
+MILWAUKEE,all_cleaned,prcp_sum,3131,3131,0,0.01
+MILWAUKEE,all_cleaned,snow_sum,3131,3131,0,0.01
+MILWAUKEE,all_cleaned,n_days,3131,3131,0,0
+MILWAUKEE,all_cleaned,n_stations,3131,3131,0,0
+MILWAUKEE,study_window,tavg_avg,575,575,0,0.01
+MILWAUKEE,study_window,tmax_avg,575,575,0,0
+MILWAUKEE,study_window,tmin_avg,575,575,0,0
+MILWAUKEE,study_window,prcp_sum,575,575,0,0.01
+MILWAUKEE,study_window,snow_sum,575,575,0,0.01
+MILWAUKEE,study_window,n_days,575,575,0,0
+MILWAUKEE,study_window,n_stations,575,575,0,0
+NEW YORK,all_cleaned,tavg_avg,3131,2650,481,0.6
+NEW YORK,all_cleaned,tmax_avg,3131,2667,464,0.56
+NEW YORK,all_cleaned,tmin_avg,3131,2661,470,0.65
+NEW YORK,all_cleaned,prcp_sum,3131,3112,19,0.05
+NEW YORK,all_cleaned,snow_sum,3131,3102,29,0.14
+NEW YORK,all_cleaned,n_days,3131,3128,3,0.9
+NEW YORK,all_cleaned,n_stations,3131,2634,497,1
+NEW YORK,study_window,tavg_avg,575,575,0,0
+NEW YORK,study_window,tmax_avg,575,575,0,0
+NEW YORK,study_window,tmin_avg,575,575,0,0
+NEW YORK,study_window,prcp_sum,575,575,0,0.01
+NEW YORK,study_window,snow_sum,575,575,0,0.01
+NEW YORK,study_window,n_days,575,575,0,0
+NEW YORK,study_window,n_stations,575,575,0,0
+WASHINGTON,all_cleaned,tavg_avg,5000,5000,0,0.01
+WASHINGTON,all_cleaned,tmax_avg,5000,5000,0,0
+WASHINGTON,all_cleaned,tmin_avg,5000,5000,0,0
+WASHINGTON,all_cleaned,prcp_sum,5000,5000,0,0.01
+WASHINGTON,all_cleaned,snow_sum,5000,5000,0,0
+WASHINGTON,all_cleaned,n_days,5000,5000,0,0
+WASHINGTON,all_cleaned,n_stations,5000,5000,0,0
+WASHINGTON,study_window,tavg_avg,575,575,0,0
+WASHINGTON,study_window,tmax_avg,575,575,0,0
+WASHINGTON,study_window,tmin_avg,575,575,0,0
+WASHINGTON,study_window,prcp_sum,575,575,0,0.01
+WASHINGTON,study_window,snow_sum,575,575,0,0
+WASHINGTON,study_window,n_days,575,575,0,0
+WASHINGTON,study_window,n_stations,575,575,0,0

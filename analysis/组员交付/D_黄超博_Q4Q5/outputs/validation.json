@@ -1,0 +1,168 @@
+{
+  "all_passed": true,
+  "passed": 31,
+  "total": 31,
+  "checks": [
+    {
+      "check": "输入文件哈希一致",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "主表3450行29列",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "城市周主键唯一",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "周标签均为周日",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "原始30个人口值与清洗表一致",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "融合人口符合普查年线性插值",
+      "passed": true,
+      "detail": "最大误差 0.500000 人（容许整数舍入1人）"
+    },
+    {
+      "check": "flu每十万人率公式",
+      "passed": true,
+      "detail": "主表保留2位小数；最大绝对差0.004996749"
+    },
+    {
+      "check": "flu强词命中率公式",
+      "passed": true,
+      "detail": "主表保留2位小数；最大绝对差0.005000000"
+    },
+    {
+      "check": "diph每十万人率公式",
+      "passed": true,
+      "detail": "主表保留2位小数；最大绝对差0.004995942"
+    },
+    {
+      "check": "diph强词命中率公式",
+      "passed": true,
+      "detail": "主表保留2位小数；最大绝对差0.005000000"
+    },
+    {
+      "check": "polio每十万人率公式",
+      "passed": true,
+      "detail": "主表保留2位小数；最大绝对差0.004996749"
+    },
+    {
+      "check": "polio强词命中率公式",
+      "passed": true,
+      "detail": "主表保留2位小数；最大绝对差0.005000000"
+    },
+    {
+      "check": "无报刊覆盖周命中率为NA",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1915-1922共同周独立重算",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1915-1922每周六城齐全",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1915-1922不跨窗口平滑",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1915-1922 diph_rate_per100k滚动值",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1915-1922 np_diph_rate滚动值",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1915-1922均值与导出样本一致",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1930-1932共同周独立重算",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1930-1932每周六城齐全",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1930-1932不跨窗口平滑",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1930-1932 diph_rate_per100k滚动值",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1930-1932 np_diph_rate滚动值",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q4 1930-1932均值与导出样本一致",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q5特征来自共同周均值",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q5无缺失",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q5标准化均值0方差1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Q5分组可独立重现",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "K选择符合已声明规则",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "两幅PNG和SVG存在",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "not_verified": [
+    "负责人对全部原始PDF的人工复核",
+    "NOAA原始站点记录、站点归属及清洗脚本实现（单位与汇总定义已据用户转述答复确认）",
+    "跨源行政统计边界一致性",
+    "人口或媒体对疫情的因果影响"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "checked_on": "2026-11-03",
+  "compared_artifacts": 10,
+  "changed_files": [],
+  "scope": "Q3 statistical CSVs and figures replayed twice; current saved CSV values and figure hashes checked. Manually edited HTML/Markdown and NOAA card are outside this reproducibility claim.",
+  "sha256": {
+    "analysis/q3/analysis_input.csv": "a775297ee3eb3066ff4b2d3315845680f37c27ee201e99b0bdb108a4c5097162",
+    "analysis/q3/city_correlations.csv": "c94c736894f0a2f7bc0edf13ccc9e22aae8595340368ba2370088eb6d3991d38",
+    "analysis/q3/correlations.csv": "9e3d7dd0c21b59a1504eafdfb51a7b4692c1e4710ea3b3e4fb949866e960365e",
+    "analysis/q3/q3_city_comparison.png": "420134579d51c4443957cf962a82ece6ac9ec79efd528db3157b173533170c11",
+    "analysis/q3/q3_core.png": "f458147ae945593983c581b5d78d811abe3dde3a19e974637a1d059d7cb0d078",
+    "analysis/q3/补充材料/q3_core.svg": "4b3c98a260f4ebe3ede0edce7cc44f042954ffb433152e77f3f395ba0a8e1d02",
+    "analysis/q3/补充材料/sensitivity.csv": "f7024dd168805d4090f68e024182f67f1ef7b7c08af6c22e0087212922375475",
+    "analysis/q3/补充材料/sensitivity_comparison.csv": "424f966462d618df65f0a5cd160b676d3a1e39dbfcb79a39afaca01a83234142",
+    "analysis/q3/补充材料/sensitivity_summary.csv": "9fe2ef676ded7eb9d9795a8f4bedc0edc72388066f86996c750c8652a84d5672",
+    "analysis/q3/补充材料/smoothing_counts.csv": "9ecc73bd90f3957cbb84f005bc3866ae8b0b473ff41d04c23523206edaf0ca58"
+  },
+  "replayed_artifacts_sha256": {
+    "analysis_input.csv": "a775297ee3eb3066ff4b2d3315845680f37c27ee201e99b0bdb108a4c5097162",
+    "city_correlations.csv": "c94c736894f0a2f7bc0edf13ccc9e22aae8595340368ba2370088eb6d3991d38",
+    "correlations.csv": "9e3d7dd0c21b59a1504eafdfb51a7b4692c1e4710ea3b3e4fb949866e960365e",
+    "q3_city_comparison.png": "420134579d51c4443957cf962a82ece6ac9ec79efd528db3157b173533170c11",
+    "q3_core.png": "f458147ae945593983c581b5d78d811abe3dde3a19e974637a1d059d7cb0d078",
+    "q3_core.svg": "4b3c98a260f4ebe3ede0edce7cc44f042954ffb433152e77f3f395ba0a8e1d02",
+    "sensitivity.csv": "f7024dd168805d4090f68e024182f67f1ef7b7c08af6c22e0087212922375475",
+    "sensitivity_comparison.csv": "424f966462d618df65f0a5cd160b676d3a1e39dbfcb79a39afaca01a83234142",
+    "sensitivity_summary.csv": "9fe2ef676ded7eb9d9795a8f4bedc0edc72388066f86996c750c8652a84d5672",
+    "smoothing_counts.csv": "9ecc73bd90f3957cbb84f005bc3866ae8b0b473ff41d04c23523206edaf0ca58"
+  }
+}

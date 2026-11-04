@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>六城研究进度简报</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232A3B54'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='%23F2EFE9' font-family='serif'%3E疾%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+  :root{
+    --ink:#23201D; --sub:#6B655C; --line:#DDD7CC; --paper:#F7F6F2;
+    --card:#FFFFFF; --accent:#2A3B54; --accent2:#A65E2E; --event:#B84C3A;
+    --ok:#1F7A4D; --wa:#A65E2E;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif; color:var(--ink);
+       background:var(--paper); line-height:1.55; -webkit-font-smoothing:antialiased;}
+  .sheet{max-width:900px; margin:0 auto; padding:36px 44px 28px;}
+  /* ===== 头部 ===== */
+  .head{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:20px;}
+  .kicker{font-size:12px; letter-spacing:.18em; color:var(--sub);}
+  h1{font-family:'Noto Serif SC',serif; font-size:30px; font-weight:900; margin:4px 0 6px;}
+  .sub{font-size:13.5px; color:var(--sub);}
+  /* ===== 状态条 ===== */
+  .status{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 20px;}
+  .st{font-size:12.5px; padding:6px 12px; border:1px solid var(--line); border-radius:999px;
+      background:var(--card);}
+  .st b{font-weight:700;}
+  .st .dot{display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:6px; vertical-align:1px;}
+  .st .chk{width:9px; height:9px; margin-right:6px; vertical-align:-1px; color:var(--ok);}
+  .ok .dot{background:var(--ok);} .run .dot{background:var(--accent2);} .pend .dot{background:var(--event);}
+  /* ===== 数据全景 ===== */
+  .numgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:0 0 8px;}
+  .num{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px;}
+  .num .v{font-family:'Noto Serif SC',serif; font-size:26px; font-weight:700; color:var(--accent);}
+  .num .v small{font-size:14px; color:var(--sub); font-weight:500;}
+  .num .l{font-size:12px; color:var(--sub); margin-top:2px;}
+  /* ===== 图表区 ===== */
+  .discover{background:var(--card); border:1px solid var(--line); border-radius:10px;
+            padding:16px 16px 6px; margin:14px 0;}
+  .discover h2{font-family:'Noto Serif SC',serif; font-size:17px; font-weight:700; margin:0 0 2px;}
+  .discover .hint{font-size:12.5px; color:var(--sub);}
+  #chart{width:100%; height:300px;}
+  .take{font-size:13px; color:var(--ink); margin:8px 2px 4px;}
+  .take b{color:var(--event);}
+  /* ===== 决策 / 待商讨 ===== */
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0 0;}
+  .col{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 18px;}
+  .col h2{font-family:'Noto Serif SC',serif; font-size:16px; font-weight:700; margin-bottom:8px;
+          padding-bottom:6px; border-bottom:1px solid var(--line);}
+  .col ul{list-style:none;}
+  .col li{font-size:13px; margin:7px 0; padding-left:20px; position:relative;}
+  .col li::before{content:''; position:absolute; left:2px; top:8px; width:6px; height:6px;
+                  background:var(--accent); border-radius:1px;}
+  .discuss li::before{background:var(--event);}
+  .discuss li b{color:var(--event);}
+  .discuss li .t{color:var(--sub); font-size:12px; display:block; margin-top:1px;}
+  /* ===== 时间轴 ===== */
+  .tl{display:grid; grid-template-columns:64px 16px 1fr; gap:0 8px; margin-top:18px;
+      font-size:12.5px;}
+  .tl .t{text-align:right; color:var(--sub); padding:4px 0;}
+  .tl .n{position:relative; padding:4px 0; display:flex; justify-content:center;}
+  .tl .n .ax{position:absolute; left:50%; transform:translateX(-50%); top:0; bottom:0; width:2px;
+             background:var(--line);}
+  .tl .n .dot{width:9px; height:9px; background:var(--accent); border-radius:50%;
+              position:relative; z-index:1;}
+  .tl .c{padding:4px 0 10px;}
+  .tl .c b{font-weight:700;} .tl .c span{color:var(--sub);}
+  /* ===== 页脚 ===== */
+  .foot{margin-top:20px; padding-top:10px; border-top:1px solid var(--line);
+        font-size:11.5px; color:var(--sub); display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px;}
+  @media (max-width:720px){
+    .sheet{padding:20px 16px;}
+    .numgrid{grid-template-columns:repeat(2,1fr);}
+    .cols{grid-template-columns:1fr;}
+    #chart{height:260px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .sheet{max-width:none; padding:0;}
+    .discover,.col,.num{box-shadow:none; border-color:#ccc;}
+    @page{size:A4; margin:14mm;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ===== 头部 ===== -->
+  <div class="head">
+    <div class="kicker">大数据原理与应用 · 中期大作业 · 阶段进度简报</div>
+    <h1>六城 × 四源 × 11 年：疫病 · 气象 · 人口 · 报刊关注度</h1>
+    <div class="sub">研究窗口 1915–1922 与 1930–1932 ｜ 六城：Baltimore / Cleveland / Los Angeles / Milwaukee / New York / Washington ｜ 更新 2026-10-22</div>
+  </div>
+
+  <!-- ===== 状态条 ===== -->
+  <div class="status">
+    <span class="st ok"><svg class="chk" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><b>Tycho 疫情</b> 清洗</span>
+    <span class="st ok"><svg class="chk" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><b>NOAA 气象</b> 清洗</span>
+    <span class="st ok"><svg class="chk" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><b>人口</b> 清洗（普查卷）</span>
+    <span class="st ok"><svg class="chk" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><b>报刊 OCR</b> 六城扫描</span>
+    <span class="st ok"><svg class="chk" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><b>融合表</b> 六城并入</span>
+    <span class="st ok"><svg class="chk" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><b>描述统计</b> 报告+Word</span>
+    <span class="st pend"><span class="dot"></span><b>跨源分析</b> 待启动</span>
+  </div>
+
+  <!-- ===== 数据全景 ===== -->
+  <div class="numgrid">
+    <div class="num"><div class="v">40,318<small> 行</small></div><div class="l">Tycho 疫情周记录（清洗后）</div></div>
+    <div class="num"><div class="v">20,655<small> 城·周</small></div><div class="l">NOAA 气象周值（六城）</div></div>
+    <div class="num"><div class="v">299,358<small> 页</small></div><div class="l">报刊 OCR（三小城+大三城）</div></div>
+    <div class="num"><div class="v">3,450<small> 行 × 29列</small></div><div class="l">融合表：6 城 × 575 周</div></div>
+  </div>
+
+  <!-- ===== 核心发现 ===== -->
+  <div class="discover">
+    <h2>初步证据：报刊关注度精确复现两次历史疫情</h2>
+    <div class="hint">六城报刊「流感/脊灰」关键词命中率（按年，强词口径 = 命中页数 ÷ 扫描页数；1923–1929 为设计未采集区间，折线断开）</div>
+    <div id="chart"></div>
+    <div class="take"><b>1918 大流感</b>：流感命中率冲到 <b>9.85%</b>（平时 1.4–3.2% 的 3–6 倍），1919 仍达 6.1%；<b>1916 年脊灰流行</b>：脊灰命中率 2.01%，为全窗口最高。报刊关注度与真实疫情周期吻合，可支撑跨源关联分析。</div>
+  </div>
+
+  <!-- ===== 决策 / 待商讨 ===== -->
+  <div class="cols">
+    <div class="col">
+      <h2>已拍板的关键决策</h2>
+      <ul>
+        <li>研究窗口 = <b>1915–1922 ＋ 1930–1932</b>（11 年，报刊原定采集范围）</li>
+        <li>流感 1915–1919 Tycho 无数据 → 记 NA，该段由<b>报刊描述</b>承担</li>
+        <li>人口：普查年<b>线性插值</b>到年，同城同年每周同值</li>
+        <li>报刊命中率：<b>按页数</b>口径；弱词（flu / polio / antitoxin）<b>单列</b>供敏感性分析</li>
+        <li>报刊数据量 80% 上限豁免（助教已许可，不写入最终报告）</li>
+      </ul>
+    </div>
+    <div class="col discuss">
+      <h2>下午需要商讨</h2>
+      <ul>
+        <li><b>① 分析路线定优先级</b>：融合表已就绪，先做哪条？— 跨源相关性（关注度 vs 疫情/气象）／时序领先性／城市聚类比较
+          <span class="t">影响：决定后续 3–4 周分工与产出形态</span></li>
+        <li><b>② 弱词口径的影响评估</b>：三小城脊灰命中 91% 来自弱词 polio；大三城流感弱词占 42%——敏感性分析怎么做
+          <span class="t">若剔除弱词，需全量重扫（约 1 小时）</span></li>
+        <li><b>③ 派生指标是否加列</b>：周命中率 np_rate、人均发病率（/10 万人口）
+          <span class="t">决定融合表最终列结构，加列需重跑融合</span></li>
+        <li><b>④ 收尾缺口</b>：G4 站距表（气象站-城市距离）、描述统计文档命中率口径统一（v1/v2 → 强词）
+          <span class="t">前者影响气象敏感分析，后者影响文档一致性</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== 时间轴 ===== -->
+  <div class="tl">
+    <div class="t">10-17</div><div class="n"><span class="ax"></span><span class="dot"></span></div><div class="c"><b>研究提纲定稿</b> <span>六城版；四源采集齐（报刊 OCR 约 7.8GB）</span></div>
+    <div class="t">10-21</div><div class="n"><span class="ax"></span><span class="dot"></span></div><div class="c"><b>清洗 + 描述统计 + 融合</b> <span>四源 raw→cleaned；缺口清单 GAPS；描述统计报告/Word；融合表 v1（三小城报刊）</span></div>
+    <div class="t">10-22</div><div class="n"><span class="ax"></span><span class="dot"></span></div><div class="c"><b>大三城扫描 + 单列口径</b> <span>zip 直读 26.7 万页；词表 v2 强弱词拆分；六城并入融合表（23 列）</span></div>
+    <div class="t">下一步</div><div class="n"><span class="ax"></span><span class="dot"></span></div><div class="c"><b>跨源分析启动</b> <span>相关性 / 时序 / 聚类；弱词敏感性；派生指标定稿</span></div>
+  </div>
+
+  <div class="foot">
+    <span>数据：data/raw|cleaned|integrated · 脚本：scripts/ · 缺口：docs/GAPS.md（全部可复现落盘）</span>
+    <span>命中率 = 强词命中页数 ÷ 该年扫描页数</span>
+  </div>
+</div>
+
+<script>
+const YEARS = ['1915','1916','1917','1918','1919','1920','1921','1922',
+               '1923','1924','1925','1926','1927','1928','1929','1930','1931','1932'];
+const FLU = [1.58,1.80,1.40,9.85,6.08,4.53,2.19,3.22,
+             null,null,null,null,null,null,null,3.00,2.28,2.42];
+const POLIO = [0.04,2.01,0.48,0.19,0.22,0.10,0.29,0.16,
+               null,null,null,null,null,null,null,0.25,0.41,0.24];
+const chart = echarts.init(document.getElementById('chart'));
+chart.setOption({
+  grid:{left:44,right:20,top:34,bottom:34},
+  tooltip:{trigger:'axis', valueFormatter:(v)=>v==null?'—':v.toFixed(2)+'%'},
+  legend:{top:0, left:8, itemWidth:14, itemHeight:8, textStyle:{fontSize:12}},
+  xAxis:{type:'category', data:YEARS, axisLine:{lineStyle:{color:'#23201D'}},
+         axisLabel:{fontSize:11, color:'#6B655C'}},
+  yAxis:{type:'value', name:'命中率 %', nameTextStyle:{fontSize:11,color:'#6B655C'},
+         axisLabel:{fontSize:11, color:'#6B655C'}, splitLine:{lineStyle:{color:'#EAE6DE'}}},
+  series:[
+    {name:'流感', type:'line', data:FLU, connectNulls:false, symbol:'circle', symbolSize:5,
+     lineStyle:{width:2.2, color:'#2A3B54'}, itemStyle:{color:'#2A3B54'},
+     markPoint:{data:[
+        {coord:['1918',9.85], value:'9.85%', itemStyle:{color:'#B84C3A'},
+         label:{formatter:'1918 大流感\n9.85%', fontSize:11, fontWeight:700, color:'#B84C3A'}},
+     ]}},
+    {name:'脊灰', type:'line', data:POLIO, connectNulls:false, symbol:'circle', symbolSize:5,
+     lineStyle:{width:2.2, color:'#A65E2E'}, itemStyle:{color:'#A65E2E'},
+     markPoint:{data:[
+        {coord:['1916',2.01], value:'2.01%', itemStyle:{color:'#A65E2E'},
+         label:{formatter:'1916 脊灰\n2.01%', fontSize:11, fontWeight:700, color:'#A65E2E'}},
+     ]}},
+  ]
+});
+window.addEventListener('resize', ()=>chart.resize());
+</script>
+</body>
+</html>

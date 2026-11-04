@@ -1,0 +1,37 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+**/.mplconfig/
+
+# Editors and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*.docx
+~$*.pptx
+
+# Temporary and generated local files
+*.tmp
+*.bak
+*.log
+*.part
+data/cleaned/newspaper/scan_progress.json
+**/_shots/report.json
+
+# Raw datasets stay in OneDrive/local storage, not GitHub
+data/raw/**
+!data/raw/README.md
+
+# Redundant delivery archives; their extracted contents remain versioned
+*.zip
+
+
