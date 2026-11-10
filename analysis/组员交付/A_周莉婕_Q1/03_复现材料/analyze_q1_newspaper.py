@@ -4,6 +4,10 @@
 from __future__ import annotations
 
 import csv
+import argparse
+import hashlib
+import json
+import platform
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -12,9 +16,12 @@ import pandas as pd
 from scipy.stats import pearsonr, spearmanr
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = next((p for p in Path(__file__).resolve().parents
+             if (p / 'data' / 'integrated').is_dir()), Path(__file__).resolve().parents[1])
 INPUT = ROOT / "data" / "integrated" / "weekly_sixcities_1915_1922_1930_1932.csv"
-OUT = ROOT / "analysis" / "q1_newspaper"
+DELIVERY = ROOT if (ROOT / '02_统计结果').is_dir() else ROOT / "analysis" / "组员交付" / "A_周莉婕_Q1"
+OUT = DELIVERY / "02_统计结果"
+FIGURE = DELIVERY / "01_主要成果" / "fig_q1_newspaper_disease_sync.png"
 
 DISEASES = {
     "INFLUENZA": ("np_flu_rate", "flu_rate_per100k", "Influenza"),
@@ -151,7 +158,7 @@ def save_figure(plot_data: pd.DataFrame, pooled: pd.DataFrame, output: Path) -> 
         values = np.concatenate(
             [subset["newspaper_z_mean"].to_numpy(), subset["incidence_z_mean"].to_numpy()]
         )
-        bound = max(2.0, min(5.0, np.ceil(np.nanmax(np.abs(values)) * 2) / 2))
+        bound = max(2.0, np.ceil(np.nanmax(np.abs(values)) * 2) / 2 + 0.5)
         axis.set_ylim(-bound, bound)
         right.set_ylim(-bound, bound)
         axis.axhline(0, color="#9B9B9B", linewidth=0.7, linestyle="--")
@@ -184,7 +191,8 @@ def save_figure(plot_data: pd.DataFrame, pooled: pd.DataFrame, output: Path) -> 
     fig.text(
         0.07, 0.018,
         "Source: Chronicling America OCR strong-term hit-page rate; Project Tycho cases; "
-        "NHGIS population. Lines are weekly means of paired city-level z-scores.",
+        "Census 1950 Vol. I Table 4 population (interpolated). Lines: weekly means of paired city z-scores.\n"
+        "Attention denominator follows the project convention: max pages across titles in each city-week.",
         ha="left", fontsize=9, color="#666666",
     )
     fig.subplots_adjust(left=0.12, right=0.88, top=0.90, bottom=0.09, hspace=0.36)
@@ -193,7 +201,15 @@ def save_figure(plot_data: pd.DataFrame, pooled: pd.DataFrame, output: Path) -> 
 
 
 def main() -> None:
+    global INPUT, OUT, FIGURE
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--input', type=Path, default=INPUT)
+    parser.add_argument('--output-dir', type=Path, default=OUT)
+    parser.add_argument('--figure', type=Path, default=FIGURE)
+    args = parser.parse_args()
+    INPUT, OUT, FIGURE = args.input, args.output_dir, args.figure
     OUT.mkdir(parents=True, exist_ok=True)
+    FIGURE.parent.mkdir(parents=True, exist_ok=True)
     data = pd.read_csv(INPUT, encoding="utf-8-sig")
     data["sunday_date"] = pd.to_datetime(data["sunday_date"], errors="raise")
     if data.duplicated(["city", "sunday_date"]).any():
@@ -253,7 +269,20 @@ def main() -> None:
         .groupby("city")["has_newspaper"].sum().astype(int).rename("covered_weeks")
     )
     coverage.to_csv(OUT / "q1_newspaper_coverage_by_city.csv", encoding="utf-8-sig")
-    save_figure(plot_data, pooled, OUT / "fig_q1_newspaper_disease_sync.png")
+    save_figure(plot_data, pooled, FIGURE)
+    manifest = {
+        'input': 'data/integrated/' + INPUT.name,
+        'input_sha256': hashlib.sha256(INPUT.read_bytes()).hexdigest(),
+        'rows': len(data), 'columns': len(data.columns),
+        'python': platform.python_version(), 'pandas': pd.__version__,
+        'numpy': np.__version__,
+        'rolling': '4 consecutive weeks, min_periods=4; no gap crossing',
+        'zscore_ddof': 0, 'influenza_exclusion': '1915-1919',
+        'denominator': 'np_pages=max across newspaper titles per city-week',
+        'population_source': 'Census 1950, Volume I, Table 4; linearly interpolated',
+        'p_value_limit': 'Exploratory; not corrected for serial correlation or multiple comparisons',
+    }
+    (OUT / 'run_manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')
 
     print(pooled.to_string(index=False))
     print("\nSENSITIVITY: STRONG + WEAK TERMS")

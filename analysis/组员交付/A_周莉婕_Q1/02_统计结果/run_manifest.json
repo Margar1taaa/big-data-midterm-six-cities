@@ -1,0 +1,15 @@
+{
+  "input": "data/integrated/weekly_sixcities_1915_1922_1930_1932.csv",
+  "input_sha256": "e1a0d25e8870bb57716d30676d646e18a07db17752b2866db4cc1f66a3439e58",
+  "rows": 3450,
+  "columns": 29,
+  "python": "3.14.5",
+  "pandas": "3.0.5",
+  "numpy": "2.5.2",
+  "rolling": "4 consecutive weeks, min_periods=4; no gap crossing",
+  "zscore_ddof": 0,
+  "influenza_exclusion": "1915-1919",
+  "denominator": "np_pages=max across newspaper titles per city-week",
+  "population_source": "Census 1950, Volume I, Table 4; linearly interpolated",
+  "p_value_limit": "Exploratory; not corrected for serial correlation or multiple comparisons"
+}
