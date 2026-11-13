@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""报刊 OCR 母集索引与关键词检索（单源清洗·Raw -> Cleaned，仅本地三城）。
+"""报刊 OCR 母集索引与关键词检索（单源清洗·Raw -> Cleaned，目录批次）。
 
 输入：data\\raw\\newspaper\\<City>\\<Paper>\\<Year>\\<Month>\\<Day>\\ed-N\\seq-N\\ocr.txt
 解析：路径段 = [city, paper, year, month, day, ed, seq, ocr.txt]
@@ -19,7 +19,7 @@
 - DIPHTHERIA: diphther*/diphter*（词干含 OCR 丢 h）、diphtherie/diphtheritis（德）、difteria（西）、
   membranous croup（旧称）、antitoxin（相关词，抽查复核）
 命中规则：页级匹配（一页含该病种任一模式计 1 命中），大小写不敏感；
-本脚本处理目录形式的三小城；华盛顿、纽约、密尔沃基由 scan_newspaper_zip.py 处理。
+本脚本处理目录批次（Baltimore、Cleveland、Los Angeles）；其余 ZIP 批次由 scan_newspaper_zip.py 处理。
 
 运行：python scan_newspaper.py
 """

@@ -4,7 +4,7 @@ spot_check_newspaper.py
 报刊关键词命中抽查检验（词表 v1 -> v2 拓宽的效果与命中质量）。
 
 两部分：
-1) 命中质量：三小城 × 三病 各抽 3 个命中周（n_hits>0），每周随机取 1 个 v1 命中页，
+1) 命中质量：目录批次中的三座城市 × 三病各抽 3 个命中周（n_hits>0），每周随机取 1 个 v1 命中页，
    输出命中词 + 前后 45 字符上下文，供人工判定「真命中 / 误报」。
 2) 漏检检验：随机抽 20 个「窗口内、三病均未命中」的页，用 v2 词表重扫，
    统计 v2 新增命中（估算 v1 漏检率上界）。
@@ -22,7 +22,9 @@ import sys
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from scan_newspaper import PATTERNS as V2, WORDSETS as V2W, NEWS_ROOT, sunday_of
+from scan_newspaper import PATTERNS_S, PATTERNS_W, NEWS_ROOT, sunday_of
+
+V2 = {d: PATTERNS_S[d] + PATTERNS_W[d] for d in PATTERNS_S}
 
 BASE = Path(__file__).resolve().parents[1]
 HITS_CSV = os.path.join(BASE, "data", "cleaned", "newspaper", "newspaper_hits_weekly.csv")

@@ -9,7 +9,7 @@ data\
 │   ├── tycho\        Level 2 的 1900–1960 项目提取表（2,934,886 行；407.75MB）
 │   ├── noaa\         NOAA 六城站点数据：58 份原始宽表 75.33MB；目录共 354.65MB，含 long_chart 与目录文件
 │   ├── nhgis\        NHGIS 点位 + 普查卷人口材料（28.66MB）
-│   └── newspaper\    六城报刊 OCR，299,358 页，4.57GB（目录三小城 + 大三城 ZIP）
+│   └── newspaper\    六城报刊 OCR，299,358 页，4.57GB（目录批次 + ZIP 批次）
 ├── cleaned\      单源清洗产物（见 cleaned\README.md 数据字典）
 │   ├── tycho\       六城三病种疫情周长表（40,318 行）
 │   ├── noaa\        六城气象周表（20,655 行）+ 站映射

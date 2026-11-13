@@ -64,17 +64,15 @@ data\cleaned\
 - 列（population_clean）：city_id, city_name, state_abbr, census_year, population, tycho_city, source_title, boundary_comparability
 - 说明：tycho_city 列用于与 Tycho/NOAA cleaned 的 city 名对齐（融合主键之一）
 
-## 7. newspaper\newspaper_coverage_matrix.csv / newspaper_hits_weekly.csv（仅本地三城）
-- 来源：`data\raw\newspaper\`（Baltimore/Cleveland/Los Angeles，32,036 个 ocr.txt）
-- 生成：`scripts\scan_newspaper.py`
-- 口径：页路径解析 City/Paper/Year/Month/Day；周按周日起始归并；命中为 OCR 文本关键词匹配
-  （词表 v1 = 英文基线+初步德西，见脚本头部与 GAPS G3）
-- 行数：coverage 1,576 行 / hits 4,716 行
-- 覆盖：Baltimore（Der Deutsche Correspondent 1915–1917、Telegraf 1918–1932）、Cleveland（The Gazette 1915–1932）、
-  Los Angeles（California Eagle 1915–1930、La Opinion 1930–1932、La Prensa 1917–1922）——仅 1915–1932，缺 1933–1953（GAPS G9）
+## 7. newspaper 六城报刊覆盖与关键词命中表
+- 来源：`data\raw\newspaper\`，共 299,358 个逐页 `ocr.txt`；其中目录批次 32,036 页，ZIP 批次 267,322 页。
+- 生成：目录批次使用 `scripts\scan_newspaper.py`，ZIP 批次使用 `scripts\scan_newspaper_zip.py`。
+- 读取：从文件路径或 ZIP 条目路径解析 City/Paper/Year/Month/Day；OCR 文本依次尝试 UTF-8 with BOM、UTF-8、Latin-1 解码，不重写原始文件。
+- 匹配：使用词表 v2，以忽略大小写、带词边界的正则表达式匹配疾病词干、历史/OCR 变体及德西语短语；按页判断是否命中，再按周日起始标签汇总。
+- 强弱词：强词进入主指标；弱词 `flu/polio/antitoxin` 单列，只用于敏感性分析。
+- 行数：目录批次 coverage 1,576 行、hits 4,716 行；ZIP 批次 coverage 1,722 行、hits 5,103 行。
 - 列（coverage）：city, paper, year, sunday_date, n_issues, n_pages
-- 列（hits）：city, paper, disease, sunday_date, n_hits, n_pages
-- 关键事实：INFLUENZA 命中页 1,618（页命中率 5.05%）、POLIOMYELITIS 324、DIPHTHERIA 88；1918–1919 流感年命中显著抬升
+- 列（hits）：city, paper, disease, sunday_date, n_hits, n_hits_strong, n_hits_weak, n_pages
 
 ## 复现命令（PowerShell）
 ```
@@ -82,5 +80,6 @@ python scripts\clean_tycho.py
 python scripts\clean_noaa.py
 python scripts\convert_nhgis.py
 python scripts\scan_newspaper.py
+python scripts\scan_newspaper_zip.py
 ```
 依赖：Python 3.10+、pyproj（pip install pyproj）

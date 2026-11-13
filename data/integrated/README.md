@@ -7,7 +7,7 @@
 1. **`weekly_sixcities_1915_1922_1930_1932.csv`** —— 周级主表（3,450 行 = 6 城 × 575 周，**29 列**），主键 `city × sunday_date`：
    - Tycho：flu_cases / flu_deaths / diph_cases / diph_deaths / polio_cases（周值，重复键取 max，见 G5；周标签 = `sunday_of(from_date)`，周一~周日归并到当周周日，故 tycho 偶发非周日重复行会并入下一周日标签周）
    - NOAA：tavg_avg / tmax_avg / tmin_avg / prcp_sum / snow_sum / n_days / n_stations（prcp_sum/snow_sum = 站内周有效日均、跨站平均，单位 in/day，**非周累计**）
-   - 报刊（**六城，2026-10-22 并入**）：np_flu_hits / np_polio_hits / np_diph_hits / np_pages（关注度；同城周多报并存时 np_pages 取 **max**，2026-11-03 定案；三小城表 + 大三城 zip 表，均词表 **v2** 页级命中口径，命中为**强词**计数，弱词在 *_hits_weak 列）
+   - 报刊（**六城，2026-10-22 并入**）：np_flu_hits / np_polio_hits / np_diph_hits / np_pages（关注度；同城周多报并存时 np_pages 取 **max**，2026-11-03 定案；目录批次表 + ZIP 批次表，均采用词表 **v2** 页级命中口径，命中为**强词**计数，弱词在 *_hits_weak 列）
    - 人口：population（普查年**线性插值**，见 G8 更新）
    - **派生指标（2026-10-25 落地，见 scripts\add_derived_metrics.py）**：
      - np_flu_rate / np_polio_rate / np_diph_rate —— 报刊周命中率（%）= 强词命中页数 ÷ 该周扫描页数 × 100；无报刊覆盖周（np_pages=0）记 NA
