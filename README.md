@@ -76,7 +76,7 @@ python -m playwright install chromium
 - 仓库建议设为 Private；完整 raw 数据继续保存在组内 OneDrive，不进入 GitHub。
 - `.gitignore` 已排除 `data/raw`、ZIP 交接包、缓存、日志和 Office 临时文件；raw 的恢复方式见 `data/raw/README.md`。
 - 分支命名、Pull Request、Word/PPT 单人整合规则和任务分工见 `docs/GITHUB_COLLABORATION.md`。
-- `中期大作业_最终报告.docx` 可以持续更新，但同一时间只由一名负责人编辑，避免二进制文件冲突。
+- `研究报告.docx`。
 
 ## scripts 功能分类
 
@@ -101,7 +101,7 @@ python -m playwright install chromium
 
 | 必交项 | 位置 |
 |---|---|
-| 项目报告（Word） | 根级 `中期大作业_最终报告.docx`（当前整合稿，提交前在 Word 中更新目录） |
+| 项目报告（Word） | 根级 `研究报告.docx` |
 | 项目展示 PPT | 待制作（2026-11-03 待排期） |
 | 代码仓库/压缩包（含 README） | 本目录 + `组员分析任务交接\` 四个组员 ZIP |
 | 数据源清单与采集日志 | 根 `data_sources.md` |
@@ -114,7 +114,7 @@ python -m playwright install chromium
 | 组员 | 负责问题 | 交付位置 |
 |---|---|---|
 | A 周莉婕 | Q1 疫情与报刊关注同步关系 | `analysis\组员交付\A_周莉婕_Q1` |
-| B 组 | Q2 媒体关注领先/滞后疫情（Tycho 采集） | `analysis\组员交付\B组_Q2` |
+| B 杨川誉 | Q2 媒体关注领先/滞后疫情（Tycho 采集） | `analysis\组员交付\B_杨川誉_Q2` |
 | C 黄祉玥 | Q3 气候异常与疫情强度（NOAA） | `analysis\组员交付\C_黄祉玥_Q3` |
 | D 黄超博 | Q4 人口×城市差异、Q5 城市聚类 | `analysis\组员交付\D_黄超博_Q4Q5` |
-| E 数据组（逸梵） | 全流程清洗、融合、扫描与口径管理 | 本目录 data/scripts/docs |
+| E 王逸梵 | 全流程清洗、融合、扫描与口径管理 | 本目录 data/scripts/docs |

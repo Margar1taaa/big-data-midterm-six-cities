@@ -1,6 +1,6 @@
 # NOAA raw→cleaned 原脚本补录（2026-11-03）
 
-- **脚本来源**：主项目 `scripts\clean_noaa.py`（E 数据组编写，2026-10-17 v2 口径定案）。
+- **脚本来源**：主项目 `scripts\clean_noaa.py`（E 王逸梵编写，2026-10-17 v2 口径定案）。
 - **用途**：NOAA 六城日转周清洗（Raw → Cleaned），产出两份 cleaned 文件：
   - `noaa_weekly_sixcities.csv`
   - `noaa_station_mapping_summary.csv`

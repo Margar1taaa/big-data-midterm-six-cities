@@ -29,7 +29,7 @@
 ## 关联产物（已产出）
 1. NOAA 站距核验：`analysis\组员交付\C_黄祉玥_Q3\Q3_NOAA_20261031\analysis\noaa_source_card\补充材料\raw_station_city_mapping.csv`（59 个城市—站点组合，含 `distance_km`）。
 2. 多源血缘图：`docs\多源数据血缘图.png` / `.svg`。
-3. Q1–Q5 派生分析表与图：见 `analysis\组员交付\A_周莉婕_Q1`、`B组_Q2`、`C_黄祉玥_Q3`、`D_黄超博_Q4Q5`。
+3. Q1–Q5 派生分析表与图：见 `analysis\组员交付\A_周莉婕_Q1`、`B_杨川誉_Q2`、`C_黄祉玥_Q3`、`D_黄超博_Q4Q5`。
 
 ## 已拍板决策（2026-10-21，见 docs\GAPS.md）
 - G2 流感 1915–1919：Tycho 记 NA，报刊描述该段关注度

@@ -18,7 +18,7 @@
 - 版本：Level 2 v1.1.0；官方 ZIP **22,157,131 字节**，MD5 `c3f3b1cfa4e8aa54cb730f26283cc194`。官方完整表为 1888–2014、11 列、3,659,360 行；项目 `data/raw/tycho` 文件是 1900–1960 提取表，增加 `year/week/source_level` 后为 14 列、2,934,886 行。两个数字对应不同范围与处理阶段，并非清洗丢行。
 - 清洗口径：`disease` 映射 `INFLUENZA → flu_cases / POLIOMYELITIS → polio_cases / DIPHTHERIA → diph_cases`，只取 `event=CASES`；同城同病同事件同周重复键取 `max(number)`（窗口内实际聚合 138 个）；Level 1 与 Level 2 不能相加。
 - 流感缺口：六城 1915–1918 为 0 行、1919 年仅 5 行；Q2 按统一口径整段排除 1915–1919（纽约 1919 年末真实病例仍保留在主表）。登记于 `docs\GAPS.md` G2。
-- 源卡：`analysis\组员交付\B组_Q2\data_sources.md`。
+- 源卡：`analysis\组员交付\B_杨川誉_Q2\data_sources.md`。
 
 ### 2. NOAA GHCN-Daily（气象）
 - 规模：58 份原始宽表合计 **75,331,206 字节（75.33 MB / 71.84 MiB）**、946,693 行；`data/raw/noaa` 整个目录为 **354,652,952 字节（354.65 MB / 338.22 MiB）**，差额来自 `long_chart` 转换表和 GHCN 目录/辅助文件。密尔沃基 1 组完全相同文件按 SHA 去重后原始宽表为 73,839,423 字节；共 57 个真实站号、59 个城-站组合。

@@ -7,11 +7,12 @@
 
 ## 内容清单
 
-  01_Σ╕╗ΦªüµêÉµ₧£/
-    Q1_τû½µâàΣ╕ÄµèÑσêèσà│µ│¿σÉîµ¡Ñσà│τ│╗_1Θí╡τ╗ôµ₧£.md
+  01_主要成果/
+    Q1_疫情与报刊关注同步关系_1页结果.md
     fig_q1_newspaper_disease_sync.png
-    µèÑσêèµò░µì«µ║Éσìí.md
-  02_τ╗ƒΦ«íτ╗ôµ₧£/
+    报刊数据源卡.md
+
+  02_统计结果/
     q1_city_correlations.csv
     q1_data_quality_checks.csv
     q1_newspaper_coverage_by_city.csv
@@ -20,9 +21,11 @@
     q1_pooled_correlations.csv
     q1_sensitivity_strong_plus_weak_by_city.csv
     q1_sensitivity_strong_plus_weak_pooled.csv
-  03_σñìτÄ░µ¥ÉµûÖ/
-    AI_USAGE_A_µèÑσêèσêåµ₧É.md
+
+  03_复现材料/
+    AI_USAGE_A_报刊分析.md
     README.md
     analyze_q1_newspaper.py
-  04_Θí╣τ¢«Φ«░σ╜ò/
+
+  04_项目记录/
     GAPS.md
