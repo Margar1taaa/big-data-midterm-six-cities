@@ -1,0 +1,4 @@
+﻿city,paper,date,edition,sequence,source_path,sample_file,bytes,sha256
+Baltimore,Der Deutsche Correspondent,1915-01-01,ed-1,seq-1,data/raw/newspaper/Baltimore/Der Deutsche Correspondent/1915/01/01/ed-1/seq-1/ocr.txt,data/metadata/newspaper/sample_newspaper_raw/Baltimore__1915__01__01__seq-1.txt,14037,38df57eccf3f644c4dba462eb5af1b1349d5c921ac5cf140cabcb6e0d8ef3179
+Cleveland,The Gazette,1915-01-02,ed-1,seq-1,data/raw/newspaper/Cleveland/The Gazette/1915/01/02/ed-1/seq-1/ocr.txt,data/metadata/newspaper/sample_newspaper_raw/Cleveland__1915__01__02__seq-1.txt,30038,987e9685601ff8f53719dbd5a5b09ee0fc446bbf4f2b9186c1dca86e5febca86
+Los Angeles,California Eagle,1922-01-07,ed-1,seq-1,data/raw/newspaper/Los Angeles/California Eagle/1922/01/07/ed-1/seq-1/ocr.txt,data/metadata/newspaper/sample_newspaper_raw/Los_Angeles__1922__01__07__seq-1.txt,25104,667d5c0c160a8c21d8b4e7ee2432e4e0391cf1da051216f8c5f32e53546ccc35

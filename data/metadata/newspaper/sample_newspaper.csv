@@ -1,0 +1,19 @@
+﻿city,paper,disease,sunday_date,n_hits,n_hits_strong,n_hits_weak,n_pages
+Baltimore,Der Deutsche Correspondent,DIPHTHERIA,1915-01-03,1,1,0,68
+Baltimore,Der Deutsche Correspondent,INFLUENZA,1915-01-03,1,0,1,68
+Baltimore,Der Deutsche Correspondent,POLIOMYELITIS,1915-01-03,1,0,1,68
+Cleveland,The Gazette,DIPHTHERIA,1915-01-17,1,1,0,4
+Cleveland,The Gazette,INFLUENZA,1915-01-17,1,1,0,4
+Cleveland,The Gazette,POLIOMYELITIS,1916-08-13,1,1,0,4
+Los Angeles,La Opinion,DIPHTHERIA,1930-01-12,1,1,0,72
+Los Angeles,California Eagle,INFLUENZA,1915-03-21,1,1,0,8
+Los Angeles,California Eagle,POLIOMYELITIS,1920-12-26,1,0,1,8
+Milwaukee,Milwaukee Leader,DIPHTHERIA,1915-01-03,1,1,0,66
+Milwaukee,Milwaukee Leader,INFLUENZA,1915-01-03,4,3,1,66
+Milwaukee,Milwaukee Leader,POLIOMYELITIS,1915-04-04,1,0,1,66
+New York,Daily Worker,DIPHTHERIA,1931-03-22,1,1,0,26
+New York,Daily Worker,INFLUENZA,1930-01-12,1,1,0,28
+New York,Daily Worker,POLIOMYELITIS,1930-01-05,1,0,1,36
+Washington,Evening Star,DIPHTHERIA,1914-12-27,1,1,0,40
+Washington,Evening Star,INFLUENZA,1914-12-27,2,0,2,40
+Washington,Evening Star,POLIOMYELITIS,1915-01-10,2,0,2,218

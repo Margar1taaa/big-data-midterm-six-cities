@@ -1,0 +1,41 @@
+{
+  "generated_by": "scripts/build_submission_samples.py",
+  "samples": {
+    "newspaper": {
+      "file": "data/metadata/newspaper/sample_newspaper.csv",
+      "rows": 18,
+      "cities": 6,
+      "diseases": 3
+    },
+    "noaa": {
+      "file": "data/metadata/noaa/sample_noaa.csv",
+      "rows": 6,
+      "cities": 6
+    },
+    "nhgis": {
+      "file": "data/metadata/nhgis/sample_nhgis.csv",
+      "rows": 6,
+      "cities": 6,
+      "census_year": 1930
+    },
+    "integrated": {
+      "file": "data/metadata/integrated/sample_integrated.csv",
+      "rows": 6,
+      "cities": 6,
+      "year": 1920
+    },
+    "tycho": {
+      "file": "data/metadata/tycho/sample_tycho.csv",
+      "rows": 18,
+      "cities": 6,
+      "diseases": 3
+    },
+    "newspaper_raw": {
+      "file": "data/metadata/newspaper/sample_newspaper_raw.csv",
+      "files": 3,
+      "cities": 3,
+      "bounded_scan_seconds": 45,
+      "large_zip_scanned": false
+    }
+  }
+}

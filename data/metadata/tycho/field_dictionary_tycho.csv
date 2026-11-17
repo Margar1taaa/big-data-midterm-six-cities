@@ -1,0 +1,11 @@
+﻿field,meaning,project_use
+city,标准化城市名,城市关联
+disease,疾病名称,疾病筛选与分组
+event,事件类型：CASES 或 DEATHS,区分病例与死亡
+epi_week,流行病学年周，YYYYWW,周级时间关联
+year,由 epi_week 提取的年份,年度筛选
+week,由 epi_week 提取的周序号,周级面板
+from_date,报告周期起始日,日期关联
+to_date,报告周期结束日,日期核验
+number,该周病例数或死亡数,疫情强度指标
+source_level,Project Tycho 数据层级,来源追踪

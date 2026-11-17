@@ -1,0 +1,7 @@
+﻿city_id,city_name,state_abbr,census_year,population,tycho_city,lon,lat,source_title,boundary_comparability
+US_MD_BALTIMORE,Baltimore,MD,1930,804874,BALTIMORE,-76.612204,39.29033,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_OH_CLEVELAND,Cleveland,OH,1930,900429,CLEVELAND,-81.69542,41.49944,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_CA_LOS_ANGELES,Los Angeles,CA,1930,1238048,LOS ANGELES,-118.243669,34.05218,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_WI_MILWAUKEE,Milwaukee,WI,1930,578249,MILWAUKEE,-87.90648,43.038847,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_NY_NEW_YORK,New York City,NY,1930,6930446,NEW YORK,-74.00599,40.714215,1950 Census of Population Volume I Number of Inhabitants,not_harmonized
+US_DC_WASHINGTON,Washington,DC,1930,486869,WASHINGTON,-77.03638,38.895057,1950 Census of Population Volume I Number of Inhabitants,not_harmonized

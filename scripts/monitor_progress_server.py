@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 monitor_progress_server.py
-大三城报刊扫描实时进度条页面服务（本地，仅供进度查看）。
+ZIP 批次报刊扫描实时进度条页面服务（本地，仅供进度查看）。
 
 启动：python scripts/monitor_progress_server.py [端口]
 浏览器打开 http://127.0.0.1:8765/ 即可看到实时进度条（每 2 秒自动刷新）。
@@ -21,7 +21,7 @@ HTML = """<!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta charset="utf-8">
-<title>大三城报刊扫描进度</title>
+<title>ZIP 批次报刊扫描进度</title>
 <style>
   body { font-family: "Segoe UI", "Microsoft YaHei", sans-serif; background:#f4f6f9;
          display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
@@ -41,7 +41,7 @@ HTML = """<!DOCTYPE html>
 </head>
 <body>
 <div class="card">
-  <h1>大三城报刊 OCR 关键词扫描（zip 直读）</h1>
+  <h1>ZIP 批次报刊 OCR 关键词扫描（zip 直读）</h1>
   <p class="sub">New York / Washington / Milwaukee · 词表 v2 · 按页数口径</p>
   <div class="pct" id="pct">--</div>
   <div class="bar"><div id="fill"></div></div>

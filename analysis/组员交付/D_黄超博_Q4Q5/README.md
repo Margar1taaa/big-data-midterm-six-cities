@@ -42,7 +42,7 @@
     q5_sensitivity.csv
     run_manifest.json
     validation.json
-    分析口径与待核对事项.md
+    分析口径与待核对事项.md（历史文件名，内容已更新为核对结论）
     组员D_分析报告.html
   scripts/
     analyze.py

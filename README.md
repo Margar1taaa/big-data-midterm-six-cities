@@ -18,8 +18,9 @@
 ├── data/
 │   ├── raw/                   # 原始数据（按源分子目录；报刊 ZIP 原件另存）
 │   ├── cleaned/               # 单源清洗产物（Tycho/NOAA/人口报刊周表 + README 数据字典）
+│   ├── metadata/              # 提交用样本、来源链接、文件清单与校验值
 │   └── integrated/            # 融合宽表 weekly_sixcities_1915_1922_1930_1932.csv
-├── scripts/                   # 全部可复现脚本（19 个，功能分类见下）
+├── scripts/                   # 22 个可执行脚本 + 1 份 NOAA 复现说明
 ├── analysis/
 │   ├── briefing/              # 项目简报
 │   ├── descriptive/           # 描述性统计（md/html/docx + 图）
@@ -31,7 +32,8 @@
 │   ├── 研究提纲_简版.docx
 │   ├── 大数据清洗融合交接包.zip  # 历史清洗融合交接包归档
 │   └── 多源数据血缘图.png / .svg  # 作业必交的多源数据关联图
-└── 组员分析任务交接/           # 四个组员交付 ZIP 原件（溯源保留）
+├── 组员分析任务交接/           # 四个组员交付 ZIP 原件（溯源保留）
+└── 提交材料/                   # 报告、PPT、血缘图与 AI 使用总说明
 ```
 
 ## 数据组织（三层）
@@ -48,9 +50,11 @@
 - 4 周滚动均值；城市内 z-score（ddof=0）；Pearson 主 + Spearman 对照；缺失 NA 不补 0；
 - 流感整段排除 1915–1919（含纽约 1919 尾）；不跨 1922→1930 空档；报告 575 周/城（含 1933-01-01 边界标签周）勿写 574；
 - 人口 = 普查年线性插值（Census 1950 普查卷 Table 4，不是 NHGIS 人口）；prcp/snow 为周内日均非周累计（℉/英寸）；
-- 报刊总扫描页正式口径 **299,358**（三小城 32,036 + 大三城 267,322）；口径依据与数据缺口登记见 docs/GAPS.md（G10）。
+- 报刊总扫描页正式口径 **299,358**（目录批次 32,036 + ZIP 批次 267,322）；口径依据与数据缺口登记见 docs/GAPS.md（G10）。
 
 ## 复现流程
+
+Tycho 是当前唯一保留了自动下载脚本的来源；NOAA、NHGIS、人口普查 PDF 与报刊原始包均为人工下载或整理后放入 `data/raw`，对应脚本从本地 raw 层开始处理。NOAA 原采集时的清洗脚本未保留，现有 `clean_noaa.py --check` 用于独立重建核验，键与缺失掩码一致，数值最大差 0.01；从已发布 cleaned 表开始的融合流程可字节级复现。
 
 ```
 报刊 OCR ZIP ── scan_newspaper_zip.py ──> 词表 v2 命中表
@@ -73,10 +77,10 @@ python -m playwright install chromium
 
 ## GitHub 协作
 
-- 仓库建议设为 Private；完整 raw 数据继续保存在组内 OneDrive，不进入 GitHub。
-- `.gitignore` 已排除 `data/raw`、ZIP 交接包、缓存、日志和 Office 临时文件；raw 的恢复方式见 `data/raw/README.md`。
+- 仓库已设为 Public，供助教和教师在线检查；完整 raw 数据继续保存在组内 OneDrive，不进入 GitHub。
+- `.gitignore` 已排除 `data/raw`、交接包 ZIP、缓存、日志和 Office 临时文件；仅放行 `提交材料/big-data-midterm-six-cities_code.zip` 作为最终提交副本。raw 的恢复方式见 `data/raw/README.md`。
 - 分支命名、Pull Request、Word/PPT 单人整合规则和任务分工见 `docs/GITHUB_COLLABORATION.md`。
-- `研究报告.docx`。
+- 报告与 PPT 的提交副本位于 `提交材料/`；Markdown 底稿和各题结果继续在仓库内协作。
 
 ## scripts 功能分类
 
@@ -85,6 +89,7 @@ python -m playwright install chromium
 | 报刊扫描 | `scan_newspaper.py` / `scan_newspaper_zip.py` | OCR 文本母集索引 + 词表 v2 关键词检索（zip 流式版，不落地解压） |
 | 报刊扫描 | `spot_check_newspaper.py` | 抽查 OCR 页命中质量 |
 | 进度监控 | `monitor_scan_progress.ps1` / `monitor_progress_server.py` | 大规模扫描的平滑进度显示 |
+| 数据采集 | `collect_project_tycho.py` | 下载 Project Tycho Level 1/2、校验 MD5，并按年份生成全病种提取表与元数据 |
 | 单源清洗 | `clean_tycho.py` | Tycho 六城三病种 Raw→Cleaned |
 | 单源清洗 | `clean_noaa.py` | NOAA 六城日转周（口径说明见 `README_NOAA_raw_cleaned.md`） |
 | 单源清洗 | `convert_nhgis.py` | NHGIS 点位坐标转换 + 人口透传清洗 |
@@ -96,18 +101,20 @@ python -m playwright install chromium
 | 描述性分析 | `capture_figs.py` / `build_docx_summary.py` | HTML 图表截图 / 描述性统计 Word 文档 |
 | 工具/校验 | `len_check.py` | 行数规模检查 |
 | 工具/校验 | `emit_renderer_gap.py` / `make_renderer_gap_data.py` | Word 渲染器缺口检测数据 |
+| 提交样本 | `build_submission_samples.py` | 生成五类小型样本、统一清单与 SHA-256 |
+| 提交样本 | `sample_newspaper_raw.py` | 45 秒硬时限、非递归抽取报刊原始 OCR 样本；不扫描大型 ZIP |
 
 ## 必交材料对照（作业要求）
 
 | 必交项 | 位置 |
 |---|---|
-| 项目报告（Word） | 根级 `研究报告.docx` |
-| 项目展示 PPT | 待制作（2026-11-03 待排期） |
-| 代码仓库/压缩包（含 README） | 本目录 + `组员分析任务交接\` 四个组员 ZIP |
-| 数据源清单与采集日志 | 根 `data_sources.md` |
-| 数据集（样本+元数据+校验值） | `data\raw + cleaned + integrated`；校验见各组 `validation.json` / `verification.json` |
-| 多源数据关联图（必交一张） | `docs\多源数据血缘图.png` |
-| AI 使用说明 | 根 `AI_USAGE.md`（各组明细在 `组员交付\A~D`） |
+| 项目报告（Word） | `提交材料\研究报告.docx` |
+| 项目展示 PPT | `提交材料\大数据中期汇报.pptx` |
+| 代码仓库/压缩包（含 README） | 当前公开 GitHub 仓库；提交副本 `提交材料\big-data-midterm-six-cities_code.zip`（不含大体量 raw） |
+| 数据源清单与采集日志 | 根 `data_sources.md`；提交副本 `提交材料\data_sources.md` |
+| 数据集（样本+元数据+校验值） | `data\metadata\README.md`；提交副本 `提交材料\数据集样本与元数据\` |
+| 多源数据关联图（必交一张） | `提交材料\多源数据血缘图.png` |
+| AI 使用说明 | 根 `AI_USAGE.md`；提交副本 `提交材料\AI_USAGE.md`；A—D 明细路径见根说明 |
 
 ## 组员分工
 

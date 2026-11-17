@@ -8,7 +8,7 @@ build_integrated.py
 - 窗口 = 周标签(周日日期) ∈ [1915-01-01, 1922-12-31] ∪ [1930-01-01, 1932-12-31]
 - 流感 Tycho 前段(1915–1919)无数据 → NA，该段流感关注度由报刊列承担
 - 人口 = 普查年间按年线性插值（推翻 G8 原"不插值"，README/GAPS 已同步）
-- 缺值一律 NA（不补 0）；报刊 = 六城（三小城表 + 大三城 zip 表，2026-10-22 并入，
+- 缺值一律 NA（不补 0）；报刊 = 六城（目录批次表 + ZIP 批次表，2026-10-22 并入，
   两表均词表 v2 页级口径；2026-10-22 单列：np_*_hits 为强词命中、np_*_hits_weak 为弱词单列）
 - Tycho 同 (city, week, disease, event) 重复取 max（G5 推荐口径）
 """
@@ -198,8 +198,8 @@ def main():
             rows.append(r)
 
     out_csv = os.path.join(OUT_DIR, "weekly_sixcities_1915_1922_1930_1932.csv")
-    with open(out_csv, "w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=cols)
+    with open(out_csv, "w", encoding="utf-8-sig", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=cols, lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
 

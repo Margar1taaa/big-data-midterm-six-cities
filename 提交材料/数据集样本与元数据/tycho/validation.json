@@ -1,0 +1,19 @@
+{
+  "validated_at": "2026-11-17",
+  "file": "data/raw/tycho/ProjectTycho_LEVEL2_1900_1960_all_diseases.csv",
+  "bytes": 407747781,
+  "data_rows": 2934886,
+  "columns": 14,
+  "sha256": "D1A8442F4F8D7D43DA38BE7E9DB4A9F10B2CB0B068E9BE3A0FD10DB05C326D10",
+  "manifest_bytes_match": true,
+  "manifest_rows_match": true,
+  "script_syntax_check": true,
+  "script_help_check": true,
+  "sample_file": "data/metadata/tycho/sample_tycho.csv",
+  "sample_rows": 18,
+  "sample_cities": 6,
+  "sample_diseases": 3,
+  "sample_unique_city_disease": 18,
+  "field_dictionary_file": "data/metadata/tycho/field_dictionary_tycho.csv",
+  "field_dictionary_fields": 10
+}

@@ -356,9 +356,9 @@ def reports(results,cities,sens,transformed,coverage,b):
 
 {md_table(counts.reset_index())}
 
-NOAA 温度三列覆盖全表；降水 1 个 NA；降雪 338 个 NA，洛杉矶 291、密尔沃基 47。本次补充原始宽表后已补齐六城映射、站点坐标和站距，详见NOAA源卡；原清洗脚本和导出配置仍未提供。字段单位、PRCP/SNOW 的跨站聚合顺序和原始质量标志处理不能由当前包完整验证，因此图用无量纲标准化值，不将现有数值换算成物理效应。站数敏感性不能代替站点级重建。
+NOAA 温度三列覆盖全表；降水 1 个 NA；降雪 338 个 NA，洛杉矶 291、密尔沃基 47。本次补充原始宽表后已补齐六城映射、站点坐标和站距，详见NOAA源卡；原采集时清洗脚本和导出配置未留存，主项目后补脚本属于独立重建核验。字段单位、PRCP/SNOW 的跨站聚合顺序和原始质量标志处理不能由当前包完整验证，因此图用无量纲标准化值，不将现有数值换算成物理效应。站数敏感性不能代替站点级重建。
 
-重建脚本从 cleaned 表逐格复现主表，检查 NA 掩码及全部 29 列；原始采集/清洗的复现仍需原作者脚本与 raw。主表报刊分母与跨报纸汇总存在继承口径差异，已单列 GAPS，不影响本题 NOAA×Tycho 的计算。
+重建脚本从 cleaned 表逐格复现主表，检查 NA 掩码及全部 29 列；raw→cleaned为后补独立核验，不冒充原脚本字节复现。主表报刊分母采用项目冻结的同城周最大页数口径，不影响本题 NOAA×Tycho 的计算。
 
 ## 复现
 
@@ -368,7 +368,7 @@ python scripts/build_integrated.py --check
 python scripts/run_q3.py
 ```
 
-完整数据、脚本、依赖版本、输入 SHA256 与核验结果见 `run_manifest.json`、`rebuild_check.json`、`verification.json`。结果为初版供 E 整合，新增约定及待补材料写在 `docs/GAPS.md` 的 {DATE} 条目。
+完整数据、脚本、依赖版本、输入 SHA256 与核验结果见 `run_manifest.json`、`verification.json`。结果与复现边界写入 `docs/GAPS.md` 的 {DATE} 条目，展示整理后相关 JSON 位于 `analysis/q3/补充材料/`。
 """
     (OUT/"Q3_report.md").write_text(text,encoding="utf-8")
     bullets="".join(f"<li>{html.escape(t)}</li>" for t in headlines)
@@ -379,7 +379,7 @@ python scripts/run_q3.py
     <p><b>方法：</b>病例先做完整 4 周滚动均值；气象周值与病例在各城内 z-score，成对排除 NA。流感整段排除 1915–1919。Pearson 为主、Spearman 为对照。* 表示 8 周分块置换（{b} 次）经 15 项 BH 校正后 q&lt;0.05。</p>
     <p><b>降水/降雪：</b>{water}</p>
     <p><b>解释边界：</b>主图 A 的周值关联仍含季节性；B 控制各城月份与年份。†表示r与ρ方向或量级不同。流感温度关联的量级对log1p敏感。结果仅为统计关联，不能据此推断因果。</p>
-    <p><b>质量与交接：</b>降水缺 1 周，降雪缺 338 城市周，均未补零；提供站数/天数筛选、人口与 log1p、前后一周、边界周对照。六城映射与站距已由原始宽表补齐；单位有逐日样本证据，原始导出配置仍待补。</p>
+    <p><b>质量与交接：</b>降水缺 1 周，降雪缺 338 城市周，均未补零；提供站数/天数筛选、人口与 log1p、前后一周、边界周对照。六城映射与站距已由原始宽表补齐；单位有逐日样本证据，原始导出配置未记录。</p>
     <p class="meta"><a href="Q3_report.md">完整方法与结果</a> · <a href="correlations.csv">相关系数表</a> · <a href="sensitivity_comparison.csv">敏感性表</a> · <a href="../noaa_source_card/NOAA_source_card.md">NOAA 气象源卡</a></p></html>"""
     (OUT/"Q3_one_page.html").write_text(one,encoding="utf-8")
     return headlines

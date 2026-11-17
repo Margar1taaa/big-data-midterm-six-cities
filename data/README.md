@@ -1,7 +1,7 @@
-# data 三层数据目录
+# data 三层数据与元数据目录
 
 > 按大作业 Raw / Cleaned / Integrated 三层组织，每层按数据源分子目录。
-> 更新：2026-11-04
+> 更新：2026-11-17
 
 ```
 data\
@@ -15,6 +15,7 @@ data\
 │   ├── noaa\        六城气象周表（20,655 行）+ 站映射
 │   ├── nhgis\       六城经纬度 + 30 条普查年人口
 │   └── newspaper\   六城报刊覆盖矩阵 + 强/弱关键词命中
+├── metadata\     可公开提交的采集清单、字段说明和校验记录
 ├── integrated\   已完成的周级融合主表（3,450 行 × 29 列）
 └── README.md     本文件
 ```
@@ -23,20 +24,28 @@ data\
 
 - **raw**：保留下载原件或项目使用的提取表。Tycho 当前文件已筛选为 1900–1960，并增加 `year/week/source_level`，不是未改动的官方 11 列完整表。
 - **cleaned**：每个源的清洗结果，统一周历、城市名和缺失值口径，可由 `scripts\` 下脚本复现。
+- **metadata**：保存可公开提交的manifest、来源说明、字段字典和校验结果，不保存大体量原始文件。
 - **integrated**：跨源融合主表、派生指标和覆盖摘要，供 Q1–Q5 分析使用。
 
 ## 复现
 
 从项目根目录运行；脚本以自身位置定位项目根目录，不依赖本机绝对路径。
 
+Tycho 可由脚本从官方地址下载。其余来源先人工取得原始文件并按 `data/raw/README.md` 放置，再从本地 raw 层运行处理脚本。
+
 ```
+python scripts\collect_project_tycho.py --root . --start-year 1900 --end-year 1960
 python scripts\clean_tycho.py
-python scripts\clean_noaa.py
+python scripts\clean_noaa.py --check
 python scripts\convert_nhgis.py
 python scripts\scan_newspaper.py
 python scripts\scan_newspaper_zip.py
 python scripts\build_integrated.py
 python scripts\add_derived_metrics.py --write
+python scripts\build_submission_samples.py
+python scripts\sample_newspaper_raw.py
 ```
 
-依赖：Python 3.10+、pyproj；生成 Word/截图时另需 python-docx、playwright。
+`clean_noaa.py --check` 在临时目录重建，不覆盖已发布周表；它验证 20,655 个键和缺失掩码一致，并允许已知的最大 0.01 浮点舍入差异。报刊两个全量扫描脚本耗时较长，提交用原始 OCR 小样本应运行有 45 秒硬时限的 `sample_newspaper_raw.py`。
+
+依赖：Python 3.10+、pandas、pyproj；生成 Word/截图时另需 python-docx、playwright。

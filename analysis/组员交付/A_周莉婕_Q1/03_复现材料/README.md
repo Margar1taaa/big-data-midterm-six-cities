@@ -11,7 +11,7 @@
 - `q1_data_quality_checks.csv`：输入表质量检查。
 - `q1_newspaper_coverage_by_city.csv`：六城报刊覆盖周数。
 - `报刊数据源卡.md`：材料线数据源卡。
-- `AI_USAGE_A_报刊分析.md`：AI 使用说明草稿。
+- `AI_USAGE_A_报刊分析.md`：AI 使用说明；原始记录未保存具体工具、模型、使用时间与逐字 Prompt，文档按现有证据如实标注。
 
 重跑命令：
 

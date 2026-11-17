@@ -6,11 +6,13 @@
 
 | 数据源 | 来源 | 获取方式 | 数据类型 | 原始规模 / 时间范围 | 采集时间 | 许可 / 使用说明 | 主要字段 | 跨源关联字段 |
 |---|---|---|---|---|---|---|---|---|
-| Project Tycho Level 2 v1.1.0（美国历史疾病周报） | [Zenodo 数据集](https://zenodo.org/records/12608994)，DOI `10.5281/zenodo.12608994` | 下载官方 ZIP、核对 MD5；项目表筛选 1900–1960 并增加 `year/week/source_level` | 历史周级病例/死亡计数，CSV | 官方完整 Level 2 表 **3,659,360 行**（1888–2014）；项目实际使用的 1900–1960 提取表 **2,934,886 行 / 33 病种**；六城三病种清洗长表 **40,318 行** | 下载日期 **2026-09-25**（当日下载日志+文件时间交叉确认）；六城清洗 2026-10-17 | **CC BY 4.0**（官方许可页为准）；使用注明作者与 Project Tycho、版本与 DOI；缺报不当作零病例 | `epi_week/from_date/to_date/state/loc/disease/event/number` → 清洗：`city/year/week/flu_cases/polio_cases/diph_cases` | `city × sunday_date`（`from_date` 所在周的周日） |
+| Project Tycho Level 2 v1.1.0（美国历史疾病周报） | [Zenodo 数据集](https://zenodo.org/records/12608994)，DOI `10.5281/zenodo.12608994` | `scripts/collect_project_tycho.py` 下载官方 ZIP、核对 MD5并按年份提取；manifest见 `data/metadata/tycho/data_manifest.csv` | 历史周级病例/死亡计数，CSV | 官方完整 Level 2 表 **3,659,360 行**（1888–2014）；项目实际使用的 1900–1960 提取表 **2,934,886 行 / 33 病种**；六城三病种清洗长表 **40,318 行** | 下载日期 **2026-09-25**（当日下载日志+文件时间交叉确认）；六城清洗 2026-10-17 | **CC BY 4.0**（官方许可页为准）；使用注明作者与 Project Tycho、版本与 DOI；缺报不当作零病例 | `epi_week/from_date/to_date/state/loc/disease/event/number` → 清洗：`city/year/week/flu_cases/polio_cases/diph_cases` | `city × sunday_date`（`from_date` 所在周的周日） |
 | NOAA GHCN-Daily（气象） | NOAA/NCEI [产品页](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily)，数据 DOI `10.7289/V5D21VHZ` | 官方 HTTPS 按站下载（无注册） | 站点日值气象，宽表 CSV（纽约 2 个实为 XLSX） | 原始宽表 **58 文件 / 946,693 行 / 75.33 MB**；`data/raw/noaa` 目录 **354.65 MB（338.22 MiB）**，含转换长表与目录文件；观测 1900-01-01 至 1995-12-21 | 原始下载日期未记录；源卡复核 2026-10-31 | NOAA/NCEI 公开数据（GHCN-Daily 无附加许可限制）；17 个城-站组合 >50km、0 个 >100km（最大 96.3km），为近城站网 | `STATION/NAME/DATE/PRCP/SNOW/SNWD/TMAX/TMIN` → 周表：`tavg_avg/tmax_avg/tmin_avg/prcp_sum/snow_sum`（℉、周内日均 in/day） | `city × sunday_date`（站按城市映射，NHGIS 点位作距离参考） |
 | U.S. Census 1950 普查卷（人口） | Census Bureau《1950 Census of Population, Volume I》各州/特区卷 **Table 4**（历史人口回顾表） | 官方 PDF 逐页视觉转录 | 普查人口，PDF→CSV | 6 城 × 5 普查年（1910/1920/1930/1940/1950）= **30 条**；六份 PDF 均核验存在 | 前期说明卡 2026-10-14；**人工复核 2026-11-03**（30 条逐行核对） | 美国政府出版物，公开可用 | `census_year/population/unit/city_name/source_url/source_pdf_page/printed_page/table` | `city_id → tycho_city`（融合主键 city × sunday_date；年份线性插值） |
 | IPUMS NHGIS 1930 Place Points（城市点位，辅助源） | IPUMS NHGIS [Place Points](https://www.nhgis.org/place-points) 图层 | 官方图层下载 | 空间点位（投影坐标），DBF+SHP | 6 城 × 1930 年 = 6 条；全国图层 16,712 条 | 2026-10 月内（具体日志未逐文件记录） | NHGIS 学术使用条款（登录下载） | `place_1930/nhgisplace/x_m/y_m`（Albers 等积，NAD83）→ 清洗加 `lon/lat` | 城市点位仅用于站距校验与坐标参考，不进融合主表 |
 | Chronicling America（报刊 OCR） | Library of Congress Chronicling America（NDNP） | 官方 ZIP 流式读取（不落地解压） | 历史报纸逐页 OCR 文本 | 六城研究窗内扫描页 **299,358 页**（正式口径）；raw 原始数据 **4.57 GB** | 扫描 2026-10-17~22 分批完成 | 美国公有领域报纸 OCR，公开可用；保留 OCR 误差与覆盖不均说明 | `city/paper/sunday_date/n_issues/n_pages/np_*_hits_strong/np_*_hits_weak` | `city × sunday_date`（报纸日期归入周日） |
+
+采集方式说明：只有 Project Tycho 保留了从官方地址自动下载、校验和提取的一体化脚本。NOAA 站点宽表、NHGIS 图层、人口普查 PDF 与报刊原始目录/ZIP 均为人工下载或整理后放入 `data/raw`；相应脚本负责本地解析、清洗、扫描和融合，不应表述为这些来源都由脚本自动采集。
 
 ## 各源说明与数据缺口
 
@@ -23,7 +25,7 @@
 ### 2. NOAA GHCN-Daily（气象）
 - 规模：58 份原始宽表合计 **75,331,206 字节（75.33 MB / 71.84 MiB）**、946,693 行；`data/raw/noaa` 整个目录为 **354,652,952 字节（354.65 MB / 338.22 MiB）**，差额来自 `long_chart` 转换表和 GHCN 目录/辅助文件。密尔沃基 1 组完全相同文件按 SHA 去重后原始宽表为 73,839,423 字节；共 57 个真实站号、59 个城-站组合。
 - 口径：TAVG 缺值用 (TMAX+TMIN)/2 回退；**PRCP/SNOW 为周内有效观测日日均、非周累计**；缺失 NA 不补 0；缺 TAVG 列的文件不补造。
-- **原始下载日期与导出单位配置未记录**（官方 README 单位换算已用 12 个本地值与官方 .dly 原生记录比对验证）；`source_card.md` 生成脚本 `scripts/audit_noaa_raw.py`、`build_noaa_source_card.py`。
+- **原始下载日期与导出单位配置未记录**（官方 README 单位换算已用 12 个本地值与官方 .dly 原生记录比对验证）。项目根 `scripts/clean_noaa.py --check` 可从现存 raw 独立重建并比较：20,655 个城市周的键和缺失掩码一致，62 个数值单元存在 0.01 的浮点舍入差异，因此不宣称字节级复现原采集时清洗代码。源卡生成脚本位于 C 组交付目录的 `scripts/`。
 - 源卡：`analysis\组员交付\C_黄祉玥_Q3\Q3_NOAA_20261031\analysis\noaa_source_card\NOAA_source_card.md`；采集记录：同目录 `补充材料\collection_record.md`。
 
 ### 3. 人口普查（人口）
@@ -40,6 +42,9 @@
 - **页数口径**：正式 **299,358**（目录批次 32,036 页 + ZIP 批次 267,322 页）；口径依据与缺口登记见 `docs\GAPS.md`（G10）。
 - 风险声明：关键词命中是关注代理指标，不等于疫情或公众态度；报纸出版地不等于报道事件地；OCR 误差、多语种、题名更替可能引入系统偏差。
 - 源卡：`analysis\组员交付\A_周莉婕_Q1\01_主要成果\报刊数据源卡.md`。
+- 原始 OCR 小样本：`data\metadata\newspaper\sample_newspaper_raw.csv` 及同名目录；抽样脚本有 45 秒时限且不打开 3.85GB 的三城 ZIP。
+
+全部公开提交样本、核心文件行列数、字节数和 SHA-256 汇总见 `data\metadata\README.md` 与 `data\metadata\dataset_manifest.csv`。
 
 ## 采集日志摘要
 

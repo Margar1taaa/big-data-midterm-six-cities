@@ -81,4 +81,6 @@
 
 `python scripts/audit_noaa_raw.py --zip <NOAA_DATA.zip路径>` 生成文件清单、六城映射和站距、规模与周值对照；`python scripts/build_noaa_source_card.py`生成本源卡。所需audit JSON/CSV已随交付保留；重建源卡不必重新下载原始数据。
 
+在主项目根目录可运行 `python scripts/clean_noaa.py --check`。该命令在临时目录独立重建周表，不覆盖已发布文件；2026-11-17实测得到相同的20,655个城市周、键和缺失掩码，62个数值单元存在0.01舍入差异。原采集时的清洗脚本和导出配置未保留，因此raw→cleaned不宣称字节级复现；从已发布cleaned表到融合表和Q3结果可精确复现。
+
 

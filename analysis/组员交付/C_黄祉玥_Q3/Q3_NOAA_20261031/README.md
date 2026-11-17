@@ -1,10 +1,10 @@
 # 任务 3（Q3）与线 B NOAA 气象源卡交付
 当前目录为可交付项目根；原交接包与“查阅”目录保留。
-先打开 **[Q3 一页结果](analysis/q3/Q3_one_page.html)** 和 **[NOAA 一页源卡](analysis/noaa_source_card/NOAA_one_page.html)**；详细源卡看 **[NOAA_source_card.md](analysis/noaa_source_card/NOAA_source_card.md)**。
+先打开 **[Q3 一页结果](analysis/q3/Q3_one_page.html)**；NOAA来源、字段和复现边界见 **[NOAA_source_card.md](analysis/noaa_source_card/NOAA_source_card.md)**。
 
 | 交付内容 | 位置 |
 |---|---|
-| 一页结果＋分病种核心图 | `analysis/q3/Q3_one_page.html`、`q3_core.png`、`q3_core.svg` |
+| 一页结果＋分病种核心图 | `analysis/q3/Q3_one_page.html`、`analysis/q3/q3_core.png`、`analysis/q3/补充材料/q3_core.svg` |
 | 完整方法、解读与局限 | `analysis/q3/Q3_report.md` |
 | 系数、城市分层、8类敏感性、复核中间表 | `analysis/q3/*.csv` |
 | NOAA源卡、字段字典、站点映射、采集记录 | `analysis/noaa_source_card/` |
@@ -12,7 +12,7 @@
 | 日期口径与缺口记录 | `docs/GAPS.md`（2026-10-31追加） |
 | C的AI使用供稿 | `docs/AI_USAGE_C.md` |
 | 输入数据 | `data/cleaned/`、`data/integrated/`，来自交接包 |
-| 输入SHA、版本、核验结果 | `analysis/q3/run_manifest.json`、`verification.json`、`reproducibility_check.json` |
+| 输入SHA、版本、核验结果 | `analysis/q3/补充材料/run_manifest.json`、`verification.json`、`reproducibility_check.json` |
 
 ## 已得结果
 

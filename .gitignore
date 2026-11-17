@@ -33,5 +33,6 @@ data/raw/**
 
 # Redundant delivery archives; their extracted contents remain versioned
 *.zip
+!提交材料/big-data-midterm-six-cities_code.zip
 
 

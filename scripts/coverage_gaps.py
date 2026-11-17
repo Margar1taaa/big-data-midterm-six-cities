@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""覆盖缺口矩阵 + 大三城 zip 细粒度描述统计（不重复已有描述性分析）。
+"""覆盖缺口矩阵（不重复已有描述性分析）。
 
 1) coverage_gaps_matrix.csv：六城 × 三病 × 两事件的覆盖区间与缺口清单
    - 依据 data\\cleaned\\tycho\\cleaned_tycho_weekly_sixcities.csv 实际年份集合
    - 中间断档 = [data_min, data_max] 内未覆盖年份；窗口缺口 = 研究窗口 1916–1953 内未覆盖年份
-2) newspaper_zip_yearly_stats.csv：大三城 zip 每 (城,报,年) 页数/覆盖月数
-   - 只读 zip namelist（不读 OCR 内容），解析 <顶层>/City/Paper/Year/Month/Day/.../ocr.txt
+报刊ZIP约3.85GB，本脚本不再打开或枚举其中央目录。报刊覆盖统计直接使用
+data/cleaned/newspaper/newspaper_coverage_matrix_zip.csv。
 
 运行：python coverage_gaps.py
 """
@@ -14,14 +14,12 @@ import datetime
 import json
 import os
 from pathlib import Path
-import zipfile
 from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = os.path.join(ROOT, "data")
 CLN = os.path.join(DATA, "cleaned")
 OUT = os.path.join(ROOT, "analysis", "descriptive")
-ZIP_PATH = os.path.join(DATA, "raw", "newspaper", "纽约_华盛顿_密尔沃基.zip")
 
 CITIES = ["BALTIMORE", "CLEVELAND", "LOS ANGELES", "MILWAUKEE", "NEW YORK", "WASHINGTON"]
 DISEASES = ["DIPHTHERIA", "INFLUENZA", "POLIOMYELITIS"]
@@ -102,25 +100,16 @@ def main():
         json.dump({k: v for k, v in summary.items()}, f, ensure_ascii=False, indent=1)
     print("GAPS_ROWS=%d" % len(rows))
 
-    # ---------- 2) 大三城 zip 每年/每月覆盖统计（只读 namelist） ----------
+    # ---------- 2) ZIP 批次年度覆盖：只读小型 cleaned coverage，不打开大型 ZIP ----------
     zcp = defaultdict(lambda: {"pages": 0, "months": set()})
-    with zipfile.ZipFile(ZIP_PATH) as zf:
-        for raw in zf.namelist():
-            try:
-                n = raw.encode("cp437").decode("utf-8")
-            except Exception:
-                n = raw
-            if n.startswith("__MACOSX") or n.endswith("/"):
-                continue
-            parts = n.split("/")
-            if len(parts) < 6 or parts[-1].lower() != "ocr.txt":
-                continue
-            city, paper = parts[1], parts[2]
-            y, m = parts[3], parts[4]
-            if not (y.isdigit() and m.isdigit()):
-                continue
-            zcp[(city, paper, int(y))]["pages"] += 1
-            zcp[(city, paper, int(y))]["months"].add(int(m))
+    coverage_path = os.path.join(CLN, "newspaper", "newspaper_coverage_matrix_zip.csv")
+    with open(coverage_path, encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            date = datetime.date.fromisoformat(row["sunday_date"])
+            year = int(row["year"])
+            key = (row["city"], row["paper"], year)
+            zcp[key]["pages"] += int(row["n_pages"])
+            zcp[key]["months"].add(date.month)
     zrows = []
     for (city, paper, y), v in sorted(zcp.items()):
         mset = sorted(v["months"])

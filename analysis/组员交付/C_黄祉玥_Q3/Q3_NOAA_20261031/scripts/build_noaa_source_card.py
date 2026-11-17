@@ -125,7 +125,7 @@ def make_card():
 <h2>实际时空覆盖</h2><p>五城宽表1900-01-01–1960-01-01，华盛顿个别站延至1995-12-21。最初50km是计划；按站点目录坐标及NHGIS城市点核算，17个城市—站点组合超过50km，全部在100km内。当前Q3使用1915–1922＋1930–1932，每城575周，含1933-01-01边界标签。</p><table><tr>{th}</tr>{tr}</table>
 <h2>字段与日转周</h2><table><tr><th>字段</th><th>口径</th></tr><tr><td>city / sunday_date / week_end</td><td>城市×周日起始标签；周末为其后第6天（周六）。</td></tr><tr><td>tavg_avg / tmax_avg / tmin_avg</td><td>站内周均后跨站平均；TAVG缺失用同日(TMAX+TMIN)/2回退。</td></tr><tr><td>prcp_sum / snow_sum</td><td>先计算各站该周有效观测日的日均降水/降雪，再对站点取平均；不是周累计量。SNOW不是雪深。</td></tr><tr><td>n_days / n_stations</td><td>站周有效天数的跨站均值（1位小数）/该周参与汇总站点数；不等同每个要素的有效站数。</td></tr></table>
 <p><b>单位与缺失：</b>12个本地日值与官方原生记录换算吻合，支持温度°F、日均降水/雪in/day解释；原始导出配置尚未附。气象缺值保留NA，真实0保留0。三温度各3450有效值，降水3449、降雪3112。</p>
-<h2>使用结论与局限</h2><div class="box">可用于当前窗口标准化关联分析。原始宽表重算与交接周表的气象值最大差0.01，站数、有效天数一致。纽约1950年后两个特殊格式文件影响窗口外周值，需另行修订。57/58宽表未保留显式质量/属性列，不能宣称逐项QFLAG质控完成。原始下载日期、订单参数及原清洗脚本仍待补；原始宽表约75.33MB，不能以转换文件扩大采集量。</div>
+<h2>使用结论与局限</h2><div class="box">可用于当前窗口标准化关联分析。原始宽表重算与交接周表的气象值最大差0.01，站数、有效天数一致。纽约1950年后两个特殊格式文件影响窗口外周值，需另行修订。57/58宽表未保留显式质量/属性列，不能宣称逐项QFLAG质控完成。原始下载日期、订单参数及原采集时清洗脚本未留存；主项目后补脚本属于独立重建核验。原始宽表约75.33MB，不能以转换文件扩大采集量。</div>
 <p class="meta"><a href="NOAA_source_card.md">详细源卡</a> · <a href="补充材料/field_dictionary.csv">字段字典</a> · <a href="补充材料/station_city_mapping.csv">六城映射与站距</a> · <a href="补充材料/raw_file_manifest.csv">原始宽表清单</a> · <a href="补充材料/collection_record.md">采集与复核记录</a> · <a href="补充材料/unit_sample_comparison.csv">单位比对</a> · <a href="{OFFICIAL}">官方说明</a></p></html>'''
     (OUT/'NOAA_one_page.html').write_text(page,encoding='utf-8')
     record=f'''# NOAA 采集与复核记录
@@ -135,7 +135,7 @@ def make_card():
 - 同日：用原包站点目录核实六城坐标，NHGIS城市点位作距离参考；59个城市—站点组合中17个>50km，0个>100km。
 - 同日：官方USC00475474.dly的1947-01前三日4要素与本地12值按英制换算匹配；证据保存在official_unit_sample.json和unit_sample_comparison.csv。官方单位定义见{OFFICIAL}。
 - 同日：独立按真站号/周聚合及缺TAVG回退复核；当前窗口气象最大差0.01，站数/天数一致。纽约1950年后的特殊格式站点导致窗口外差异，未用本次源卡修订覆盖旧清洗表或改变Q3数值。
-- 本卡生成依赖raw_audit.json和配套证据CSV；原始包可另存，无需重复解压。原始清洗代码未取得，本次审计不是原脚本的字节复现。
+- 本卡生成依赖raw_audit.json和配套证据CSV；原始包可另存，无需重复解压。原采集时清洗代码未取得；主项目后补检查脚本验证相同键和缺失掩码、最大差0.01，仍不属于原脚本的字节复现。
 '''
     (OUT/'collection_record.md').write_text(record,encoding='utf-8')
     from organize_analysis import organize_folder
