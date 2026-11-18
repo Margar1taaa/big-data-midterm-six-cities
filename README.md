@@ -109,7 +109,7 @@ python -m playwright install chromium
 | 必交项 | 位置 |
 |---|---|
 | 项目报告（Word） | `提交材料\研究报告.docx` |
-| 项目展示 PPT | `提交材料\大数据中期汇报.pptx` |
+| 项目展示 PPT | `提交材料\大数据中期汇报ppt修改版.pptx` |
 | 代码仓库/压缩包（含 README） | 当前公开 GitHub 仓库；提交副本 `提交材料\big-data-midterm-six-cities_code.zip`（不含大体量 raw） |
 | 数据源清单与采集日志 | 根 `data_sources.md`；提交副本 `提交材料\data_sources.md` |
 | 数据集（样本+元数据+校验值） | `data\metadata\README.md`；提交副本 `提交材料\数据集样本与元数据\` |
